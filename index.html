@@ -1,0 +1,2424 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+    <meta name="format-detection" content="telephone=no">
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-status-bar-style" content="default">
+    <title>Portal Nilai PTS SMA Negeri 1 Samarinda</title>
+    <style>
+        body {
+            box-sizing: border-box;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background: linear-gradient(135deg, #dc3545 0%, #007bff 50%, #ffffff 100%);
+            margin: 0;
+            padding: 0;
+            color: #333;
+            min-height: 100%;
+            overflow-x: hidden;
+        }
+        
+        body.portal-view {
+            background: 
+                linear-gradient(rgba(220, 53, 69, 0.8), rgba(0, 123, 255, 0.8)),
+                url('https://jurnalkaltim.com/wp-content/uploads/2023/09/sman-1-samarinda.webp') center/cover no-repeat fixed;
+        }
+        
+        html, body {
+            height: 100%;
+        }
+        
+        header {
+            text-align: center;
+            background: linear-gradient(135deg, #dc3545 0%, #007bff 100%);
+            color: #fff;
+            padding: 1.5rem 1rem;
+            box-shadow: 0 4px 6px rgba(0,0,0,0.2);
+            backdrop-filter: blur(10px);
+        }
+        
+        header h1 {
+            margin: 0;
+            font-size: clamp(1.2rem, 4vw, 2.2rem);
+            font-weight: 600;
+            line-height: 1.2;
+            word-wrap: break-word;
+        }
+        
+        header h1 img {
+            height: clamp(40px, 8vw, 60px);
+            width: auto;
+            vertical-align: middle;
+            margin-right: clamp(8px, 2vw, 15px);
+            border-radius: 8px;
+            box-shadow: 0 2px 8px rgba(0,0,0,0.2);
+        }
+        
+        header p {
+            margin: 0.5rem 0 0 0;
+            opacity: 0.9;
+            font-size: clamp(0.8rem, 2.5vw, 1rem);
+        }
+        
+        main {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            margin: clamp(1.5rem, 5vw, 3rem) auto;
+            gap: clamp(1rem, 3vw, 2rem);
+            max-width: 800px;
+            padding: 0 1rem;
+            flex-wrap: wrap;
+        }
+        
+        .portal-btn {
+            padding: clamp(1.2rem, 4vw, 2rem) clamp(1.5rem, 5vw, 3rem);
+            border: none;
+            border-radius: 15px;
+            font-size: clamp(1rem, 3.5vw, 1.4rem);
+            font-weight: 600;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            box-shadow: 0 8px 25px rgba(0,0,0,0.15);
+            min-width: clamp(160px, 40vw, 200px);
+            max-width: 300px;
+            text-align: center;
+            flex: 1;
+        }
+        
+        .portal-btn.guru {
+            background: linear-gradient(135deg, #dc3545, #c82333);
+            color: #fff;
+        }
+        
+        .portal-btn.siswa {
+            background: linear-gradient(135deg, #007bff, #0056b3);
+            color: #fff;
+        }
+        
+        .portal-btn:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 12px 35px rgba(0,0,0,0.2);
+        }
+        
+        .hidden {
+            display: none;
+        }
+        
+        section {
+            max-width: 1000px;
+            margin: clamp(1rem, 3vw, 2rem) auto;
+            padding: 0 clamp(0.5rem, 2vw, 1rem);
+        }
+        
+        .card {
+            background: #fff;
+            padding: clamp(1rem, 4vw, 2rem);
+            border-radius: 12px;
+            box-shadow: 0 4px 20px rgba(0,0,0,0.1);
+            margin-bottom: 1rem;
+            overflow-x: auto;
+        }
+        
+        nav {
+            margin-bottom: 2rem;
+            display: flex;
+            gap: 0.5rem;
+            flex-wrap: wrap;
+            justify-content: center;
+        }
+        
+        nav button {
+            padding: clamp(0.6rem, 2vw, 0.8rem) clamp(1rem, 3vw, 1.5rem);
+            border: none;
+            border-radius: 8px;
+            background: #e9ecef;
+            color: #495057;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            font-weight: 500;
+            font-size: clamp(0.8rem, 2.5vw, 1rem);
+            flex: 1;
+            min-width: 120px;
+            max-width: 200px;
+        }
+        
+        nav button.active {
+            background: linear-gradient(135deg, #dc3545, #007bff);
+            color: #fff;
+        }
+        
+        nav button:hover:not(.active) {
+            background: #dee2e6;
+        }
+        
+        form {
+            background: #fff;
+            padding: clamp(1rem, 4vw, 2rem);
+            border-radius: 12px;
+            box-shadow: 0 4px 20px rgba(0,0,0,0.1);
+            margin-bottom: 2rem;
+        }
+        
+        form input, form select {
+            display: block;
+            margin: 1rem 0;
+            padding: clamp(0.6rem, 2vw, 0.8rem);
+            width: 100%;
+            max-width: 100%;
+            border: 2px solid #e9ecef;
+            border-radius: 8px;
+            font-size: clamp(0.9rem, 2.5vw, 1rem);
+            transition: border-color 0.3s ease;
+            box-sizing: border-box;
+        }
+        
+        form input:focus, form select:focus {
+            outline: none;
+            border-color: #dc3545;
+        }
+        
+        form button {
+            background: linear-gradient(135deg, #dc3545, #007bff);
+            color: #fff;
+            padding: clamp(0.6rem, 2vw, 0.8rem) clamp(1.5rem, 4vw, 2rem);
+            border: none;
+            border-radius: 8px;
+            font-size: clamp(0.9rem, 2.5vw, 1rem);
+            font-weight: 600;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            width: 100%;
+            max-width: 300px;
+        }
+        
+        form button:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 4px 15px rgba(220,53,69,0.3);
+        }
+        
+        .siswa-item {
+            background: #f8f9fa;
+            padding: clamp(1rem, 3vw, 1.5rem);
+            border-radius: 8px;
+            margin-bottom: 1rem;
+            border-left: 4px solid #dc3545;
+            display: flex;
+            justify-content: space-between;
+            align-items: flex-start;
+            flex-wrap: wrap;
+            gap: 1rem;
+        }
+        
+        .siswa-info {
+            flex: 1;
+            min-width: 200px;
+        }
+        
+        .siswa-info h4 {
+            margin: 0 0 0.5rem 0;
+            color: #dc3545;
+            font-size: clamp(1rem, 2.5vw, 1.1rem);
+            word-wrap: break-word;
+        }
+        
+        .siswa-info p {
+            margin: 0.2rem 0;
+            color: #666;
+            font-size: clamp(0.8rem, 2vw, 0.9rem);
+            word-wrap: break-word;
+        }
+        
+        .siswa-actions {
+            display: flex;
+            gap: 0.3rem;
+            flex-wrap: wrap;
+            justify-content: flex-end;
+            align-items: flex-start;
+        }
+        
+        .btn-small {
+            padding: clamp(0.3rem, 1.5vw, 0.4rem) clamp(0.6rem, 2vw, 0.8rem);
+            border: none;
+            border-radius: 4px;
+            cursor: pointer;
+            font-size: clamp(0.7rem, 2vw, 0.8rem);
+            transition: all 0.3s ease;
+            white-space: nowrap;
+            text-decoration: none;
+            display: inline-block;
+            text-align: center;
+        }
+        
+        .btn-edit {
+            background: #ffc107;
+            color: #000;
+        }
+        
+        .btn-delete {
+            background: #dc3545;
+            color: #fff;
+        }
+        
+        .btn-small:hover {
+            opacity: 0.8;
+        }
+        
+        .back-btn {
+            background: #6c757d;
+            color: #fff;
+            padding: 0.8rem 1.5rem;
+            border: none;
+            border-radius: 8px;
+            cursor: pointer;
+            margin-bottom: 1rem;
+            transition: all 0.3s ease;
+        }
+        
+        .back-btn:hover {
+            background: #5a6268;
+        }
+        
+        .stats-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(clamp(150px, 30vw, 200px), 1fr));
+            gap: clamp(0.5rem, 2vw, 1rem);
+            margin-top: 1rem;
+        }
+        
+        .stat-card {
+            background: linear-gradient(135deg, #dc3545, #007bff);
+            color: #fff;
+            padding: clamp(1rem, 3vw, 1.5rem);
+            border-radius: 12px;
+            text-align: center;
+        }
+        
+        .stat-number {
+            font-size: clamp(1.5rem, 5vw, 2rem);
+            font-weight: bold;
+            margin-bottom: 0.5rem;
+        }
+        
+        .stat-card div:last-child {
+            font-size: clamp(0.8rem, 2.5vw, 1rem);
+        }
+        
+        .alert {
+            padding: 1rem;
+            border-radius: 8px;
+            margin: 1rem 0;
+        }
+        
+        .alert-success {
+            background: #d4edda;
+            color: #155724;
+            border: 1px solid #c3e6cb;
+        }
+        
+        .alert-error {
+            background: #f8d7da;
+            color: #721c24;
+            border: 1px solid #f5c6cb;
+        }
+        
+        .modal {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(0,0,0,0.5);
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            z-index: 1000;
+            padding: clamp(0.5rem, 2vw, 1rem);
+            box-sizing: border-box;
+        }
+        
+        .modal-content {
+            background: white;
+            padding: clamp(1rem, 4vw, 2rem);
+            border-radius: 12px;
+            max-width: 95vw;
+            width: 100%;
+            max-width: 500px;
+            max-height: 90vh;
+            overflow-y: auto;
+            box-sizing: border-box;
+        }
+        
+        .modal-content h3 {
+            font-size: clamp(1.1rem, 3vw, 1.3rem);
+            margin-bottom: 1rem;
+        }
+        
+        .modal-content p {
+            font-size: clamp(0.9rem, 2.5vw, 1rem);
+        }
+        
+        .link-box {
+            background: #f8f9fa;
+            padding: clamp(0.8rem, 2vw, 1rem);
+            border-radius: 8px;
+            border: 2px dashed #dee2e6;
+            margin: 1rem 0;
+            word-break: break-all;
+            font-family: monospace;
+            font-size: clamp(0.7rem, 2vw, 0.9rem);
+            overflow-x: auto;
+        }
+        
+        .copy-btn {
+            background: #28a745;
+            color: white;
+            border: none;
+            padding: 0.5rem 1rem;
+            border-radius: 4px;
+            cursor: pointer;
+            margin-left: 0.5rem;
+        }
+        
+        .input-tab {
+            padding: 0.8rem 1.5rem;
+            border: none;
+            background: #f8f9fa;
+            color: #495057;
+            cursor: pointer;
+            border-radius: 8px 8px 0 0;
+            font-weight: 500;
+            transition: all 0.3s ease;
+            border-bottom: 3px solid transparent;
+        }
+        
+        .input-tab.active {
+            background: linear-gradient(135deg, #dc3545, #007bff);
+            color: #fff;
+            border-bottom: 3px solid #dc3545;
+        }
+        
+        .input-tab:hover:not(.active) {
+            background: #e9ecef;
+        }
+        
+        @media (max-width: 768px) {
+            main {
+                flex-direction: column;
+                align-items: center;
+                margin: 1rem auto;
+                gap: 1rem;
+            }
+            
+            .portal-btn {
+                width: 100%;
+                max-width: 280px;
+                padding: 1rem 1.5rem;
+                font-size: 1.1rem;
+            }
+            
+            .siswa-item {
+                flex-direction: column;
+                align-items: flex-start;
+                padding: 1rem;
+            }
+            
+            .siswa-actions {
+                width: 100%;
+                justify-content: flex-start;
+                margin-top: 0.5rem;
+            }
+            
+            .btn-small {
+                flex: 1;
+                min-width: 70px;
+                text-align: center;
+            }
+            
+            nav {
+                justify-content: stretch;
+            }
+            
+            nav button {
+                flex: 1;
+                min-width: auto;
+            }
+            
+            .stats-grid {
+                grid-template-columns: 1fr;
+                gap: 0.8rem;
+            }
+            
+            header h1 {
+                font-size: 1.3rem;
+                line-height: 1.3;
+            }
+            
+            header h1 img {
+                height: 45px;
+                margin-right: 10px;
+            }
+        }
+        
+        @media (max-width: 480px) {
+            .card {
+                padding: 1rem;
+                margin-bottom: 0.8rem;
+            }
+            
+            .siswa-actions {
+                gap: 0.2rem;
+            }
+            
+            .btn-small {
+                padding: 0.4rem 0.5rem;
+                font-size: 0.7rem;
+            }
+            
+            .modal-content {
+                padding: 1rem;
+                max-width: 98vw;
+            }
+            
+            .link-box {
+                font-size: 0.7rem;
+                padding: 0.6rem;
+            }
+            
+            header {
+                padding: 1rem 0.5rem;
+            }
+            
+            header h1 {
+                font-size: 1.1rem;
+            }
+            
+            header h1 img {
+                height: 35px;
+                margin-right: 8px;
+            }
+        }
+    </style>
+</head>
+<body class="portal-view">
+    <header>
+        <h1><img src="https://blogger.googleusercontent.com/img/b/R29vZ2xl/AVvXsEgg94epDd0fbh1vY40CgoMlOa0OuwsO2MwRKgwRSR8EhpIcLhevGDiXF0Vt00y-KiIeTq4WsCsqacvGIrFWS7FSb1Y4_RjcOT6uWdkley8H_MRJCOMpjJEsxWMNW-LEz2SqBROFmQZtgfZ1/s320/dahana3.jpg" alt="Logo SMA Negeri 1 Samarinda" style="height: 60px; width: auto; vertical-align: middle; margin-right: 15px; border-radius: 8px; box-shadow: 0 2px 8px rgba(0,0,0,0.2);" onerror="this.style.display='none'; this.nextElementSibling.style.display='inline';"> <span style="display: none;">🏫</span> Portal Nilai PTS SMA Negeri 1 Samarinda</h1>
+        <p style="margin: 0.5rem 0 0 0; opacity: 0.9;">Sistem Manajemen Guru & Siswa</p>
+    </header>
+
+    <main id="portal-selection">
+        <button id="btnGuru" class="portal-btn guru">👨‍🏫 Portal Guru</button>
+        <button id="btnSiswa" class="portal-btn siswa">🎓 Portal Siswa</button>
+    </main>
+
+    <section id="loginGuru" class="hidden">
+        <button class="back-btn" onclick="kembaliKePortal()">← Kembali ke Portal</button>
+        
+        <div class="card">
+            <h2>🔐 Login Portal Guru</h2>
+            <p>Masukkan kredensial guru untuk mengakses sistem manajemen siswa</p>
+            <form id="formLoginGuru">
+                <input type="text" id="usernameGuru" placeholder="Username Guru" required>
+                <input type="password" id="passwordGuru" placeholder="Password" required>
+                <button type="submit">🚪 Masuk ke Portal Guru</button>
+            </form>
+            <div id="loginGuruResult"></div>
+        </div>
+    </section>
+
+    <section id="portalGuru" class="hidden">
+        <button class="back-btn" onclick="kembaliKePortal()">← Kembali ke Portal</button>
+        
+        <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 1rem; padding: 1rem; background: rgba(255,255,255,0.1); border-radius: 8px;">
+            <span id="welcomeGuru" style="color: white; font-weight: 600;"></span>
+            <div style="display: flex; gap: 0.5rem;">
+                <button onclick="showChangeGuruPassword()" style="background: #ffc107; color: #000; border: none; padding: 0.5rem 1rem; border-radius: 4px; cursor: pointer; font-weight: 600;">
+                    🔑 Ganti Password
+                </button>
+                <button onclick="logoutGuru()" style="background: #dc3545; color: white; border: none; padding: 0.5rem 1rem; border-radius: 4px; cursor: pointer;">
+                    🚪 Logout
+                </button>
+            </div>
+        </div>
+        
+        <nav>
+            <button data-tab="kelola" class="active">📚 Kelola Siswa</button>
+            <button data-tab="link">🔗 Link Orang Tua</button>
+            <button data-tab="statistik">📊 Statistik</button>
+        </nav>
+
+        <div id="tabKelola" class="tab-content">
+            <div class="card">
+                <h2>📝 Tambah Data Siswa</h2>
+                
+                <!-- Tab switcher for input methods -->
+                <div style="display: flex; gap: 0.5rem; margin-bottom: 1.5rem; border-bottom: 2px solid #e9ecef;">
+                    <button id="tabManual" class="input-tab active" onclick="switchInputTab('manual')">
+                        ✏️ Input Manual
+                    </button>
+                    <button id="tabFile" class="input-tab" onclick="switchInputTab('file')">
+                        📁 Import File
+                    </button>
+                </div>
+                
+                <!-- Manual input form -->
+                <div id="inputManual">
+                    <h3>📝 Tambah Siswa Satu per Satu</h3>
+                    <form id="formTambahSiswa">
+                        <input type="text" id="nama" placeholder="Nama Lengkap Siswa" required>
+                        <input type="text" id="nisn" placeholder="NISN (10 digit)" maxlength="10" pattern="[0-9]{10}" required>
+                        <select id="kelas" required>
+                            <option value="">Pilih Kelas</option>
+                            <option>X-1</option>
+                            <option>X-2</option>
+                            <option>X-3</option>
+                            <option>X-4</option>
+                            <option>X-5</option>
+                            <option>X-6</option>
+                            <option>X-7</option>
+                            <option>X-8</option>
+                            <option>X-9</option>
+                            <option>X-10</option>
+                            <option>X-11</option>
+                            <option>X-12</option>
+                            <option>XI-1</option>
+                            <option>XI-2</option>
+                            <option>XI-3</option>
+                            <option>XI-4</option>
+                            <option>XI-5</option>
+                            <option>XI-6</option>
+                            <option>XI-7</option>
+                            <option>XI-8</option>
+                            <option>XI-9</option>
+                            <option>XI-10</option>
+                            <option>XI-11</option>
+                            <option>XI-12</option>
+                            <option>XII-1</option>
+                            <option>XII-2</option>
+                            <option>XII-3</option>
+                            <option>XII-4</option>
+                            <option>XII-5</option>
+                            <option>XII-6</option>
+                            <option>XII-7</option>
+                            <option>XII-8</option>
+                            <option>XII-9</option>
+                            <option>XII-10</option>
+                            <option>XII-11</option>
+                            <option>XII-12</option>
+                        </select>
+                        <input type="password" id="password" placeholder="Password Login untuk Orang Tua" required>
+                        <input type="url" id="linkNilai" placeholder="Link Halaman Nilai (https://...)" required>
+                        <button type="submit">➕ Tambah Siswa</button>
+                    </form>
+                </div>
+                
+                <!-- File import form -->
+                <div id="inputFile" class="hidden">
+                    <h3>📁 Import Data dari File</h3>
+                    <p style="color: #666; margin-bottom: 1rem;">
+                        Upload file CSV atau Excel untuk menambahkan banyak siswa sekaligus.<br>
+                        <strong>Format:</strong> Nama, NISN, Kelas, Password, Link Nilai
+                    </p>
+                    
+                    <div style="background: #fff3cd; padding: 1rem; border-radius: 8px; margin-bottom: 1rem; border-left: 4px solid #ffc107;">
+                        <h4 style="margin: 0 0 0.5rem 0; color: #856404;">📊 Pilih Format Import Excel/CSV:</h4>
+                        <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); gap: 0.5rem; margin: 1rem 0;">
+                            <label style="display: flex; align-items: center; gap: 0.5rem; cursor: pointer;">
+                                <input type="radio" name="importFormat" value="lengkap" checked style="margin: 0;">
+                                <span style="font-size: 0.9rem; color: #856404;"><strong>Lengkap (5 kolom)</strong></span>
+                            </label>
+                            <label style="display: flex; align-items: center; gap: 0.5rem; cursor: pointer;">
+                                <input type="radio" name="importFormat" value="dasar" style="margin: 0;">
+                                <span style="font-size: 0.9rem; color: #856404;"><strong>Data Dasar (3 kolom)</strong></span>
+                            </label>
+                            <label style="display: flex; align-items: center; gap: 0.5rem; cursor: pointer;">
+                                <input type="radio" name="importFormat" value="minimal" style="margin: 0;">
+                                <span style="font-size: 0.9rem; color: #856404;"><strong>Minimal (2 kolom)</strong></span>
+                            </label>
+                        </div>
+                        
+                        <div id="formatInfo">
+                            <div id="infoLengkap">
+                                <p style="margin: 0.5rem 0; color: #856404; font-size: 0.9rem;"><strong>✅ Format Excel Lengkap (PERSIS seperti yang Anda mau!):</strong></p>
+                                <div style="background: #e8f5e8; padding: 1rem; border-radius: 8px; margin: 0.5rem 0; border: 2px solid #28a745;">
+                                    <h4 style="margin: 0 0 0.8rem 0; color: #155724; text-align: center;">📊 Buat Excel Seperti Ini (Mudah Banget!):</h4>
+                                    <table style="width: 100%; font-size: 0.9rem; color: #495057; border-collapse: collapse;">
+                                        <tr style="background: #28a745; color: white; font-weight: bold;">
+                                            <td style="padding: 0.6rem; border: 2px solid #155724; text-align: center;">KOLOM A</td>
+                                            <td style="padding: 0.6rem; border: 2px solid #155724; text-align: center;">KOLOM B</td>
+                                            <td style="padding: 0.6rem; border: 2px solid #155724; text-align: center;">KOLOM C</td>
+                                            <td style="padding: 0.6rem; border: 2px solid #155724; text-align: center;">KOLOM D</td>
+                                            <td style="padding: 0.6rem; border: 2px solid #155724; text-align: center;">KOLOM E</td>
+                                        </tr>
+                                        <tr style="background: #d4edda;">
+                                            <td style="padding: 0.6rem; border: 1px solid #c3e6cb; text-align: center; font-weight: bold;">NAMA</td>
+                                            <td style="padding: 0.6rem; border: 1px solid #c3e6cb; text-align: center; font-weight: bold;">NISN</td>
+                                            <td style="padding: 0.6rem; border: 1px solid #c3e6cb; text-align: center; font-weight: bold;">KELAS</td>
+                                            <td style="padding: 0.6rem; border: 1px solid #c3e6cb; text-align: center; font-weight: bold;">PASSWORD</td>
+                                            <td style="padding: 0.6rem; border: 1px solid #c3e6cb; text-align: center; font-weight: bold;">LINK</td>
+                                        </tr>
+                                        <tr>
+                                            <td style="padding: 0.6rem; border: 1px solid #dee2e6;">Ahmad Budi</td>
+                                            <td style="padding: 0.6rem; border: 1px solid #dee2e6;">1234567890</td>
+                                            <td style="padding: 0.6rem; border: 1px solid #dee2e6;">X-1</td>
+                                            <td style="padding: 0.6rem; border: 1px solid #dee2e6;">ortu123</td>
+                                            <td style="padding: 0.6rem; border: 1px solid #dee2e6;">https://nilai.com/ahmad</td>
+                                        </tr>
+                                        <tr>
+                                            <td style="padding: 0.6rem; border: 1px solid #dee2e6;">Siti Aminah</td>
+                                            <td style="padding: 0.6rem; border: 1px solid #dee2e6;">1234567891</td>
+                                            <td style="padding: 0.6rem; border: 1px solid #dee2e6;">X-1</td>
+                                            <td style="padding: 0.6rem; border: 1px solid #dee2e6;">ortu456</td>
+                                            <td style="padding: 0.6rem; border: 1px solid #dee2e6;">https://nilai.com/siti</td>
+                                        </tr>
+                                    </table>
+                                </div>
+                                <div style="background: #fff3cd; padding: 1rem; border-radius: 8px; margin: 0.8rem 0; border-left: 4px solid #ffc107;">
+                                    <h4 style="margin: 0 0 0.5rem 0; color: #856404;">🎯 CARA KERJA (Super Mudah!):</h4>
+                                    <ul style="margin: 0.5rem 0; padding-left: 1.5rem; color: #856404; font-size: 0.9rem;">
+                                        <li><strong>Kolom A (A1, A2, A3...):</strong> Tulis nama siswa - Ahmad Budi, Siti Aminah, dll</li>
+                                        <li><strong>Kolom B (B1, B2, B3...):</strong> Tulis NISN - 1234567890, 1234567891, dll</li>
+                                        <li><strong>Kolom C (C1, C2, C3...):</strong> Tulis kelas - X-1, XI-2, XII-3, dll</li>
+                                        <li><strong>Kolom D (D1, D2, D3...):</strong> Tulis password - ortu123, ortu456, dll</li>
+                                        <li><strong>Kolom E (E1, E2, E3...):</strong> Tulis link nilai - https://nilai.com/ahmad, dll</li>
+                                        <li><strong>✅ GURU TIDAK PERLU MENULIS ULANG!</strong> Tinggal isi data di kolom masing-masing!</li>
+                                    </ul>
+                                </div>
+                            </div>
+                            <div id="infoDasar" class="hidden">
+                                <p style="margin: 0.5rem 0; color: #856404; font-size: 0.9rem;"><strong>Format Data Dasar Excel:</strong></p>
+                                <div style="background: #f8f9fa; padding: 0.8rem; border-radius: 4px; margin: 0.5rem 0; border: 1px solid #dee2e6;">
+                                    <table style="width: 100%; font-size: 0.8rem; color: #495057;">
+                                        <tr style="background: #e9ecef; font-weight: bold;">
+                                            <td style="padding: 0.3rem; border: 1px solid #dee2e6;">A1</td>
+                                            <td style="padding: 0.3rem; border: 1px solid #dee2e6;">B1</td>
+                                            <td style="padding: 0.3rem; border: 1px solid #dee2e6;">C1</td>
+                                        </tr>
+                                        <tr>
+                                            <td style="padding: 0.3rem; border: 1px solid #dee2e6;">Nama</td>
+                                            <td style="padding: 0.3rem; border: 1px solid #dee2e6;">NISN</td>
+                                            <td style="padding: 0.3rem; border: 1px solid #dee2e6;">Link Nilai</td>
+                                        </tr>
+                                    </table>
+                                </div>
+                                <ul style="margin: 0.5rem 0; padding-left: 1.5rem; color: #856404; font-size: 0.8rem;">
+                                    <li>Kelas dan Password akan diisi default</li>
+                                    <li>Bisa diedit nanti satu per satu</li>
+                                </ul>
+                            </div>
+                            <div id="infoMinimal" class="hidden">
+                                <p style="margin: 0.5rem 0; color: #856404; font-size: 0.9rem;"><strong>Format Minimal Excel:</strong></p>
+                                <div style="background: #f8f9fa; padding: 0.8rem; border-radius: 4px; margin: 0.5rem 0; border: 1px solid #dee2e6;">
+                                    <table style="width: 100%; font-size: 0.8rem; color: #495057;">
+                                        <tr style="background: #e9ecef; font-weight: bold;">
+                                            <td style="padding: 0.3rem; border: 1px solid #dee2e6;">A1</td>
+                                            <td style="padding: 0.3rem; border: 1px solid #dee2e6;">B1</td>
+                                        </tr>
+                                        <tr>
+                                            <td style="padding: 0.3rem; border: 1px solid #dee2e6;">Nama</td>
+                                            <td style="padding: 0.3rem; border: 1px solid #dee2e6;">NISN</td>
+                                        </tr>
+                                    </table>
+                                </div>
+                                <ul style="margin: 0.5rem 0; padding-left: 1.5rem; color: #856404; font-size: 0.8rem;">
+                                    <li>Kelas akan diisi "Belum Ditentukan"</li>
+                                    <li>Password default: "siswa123"</li>
+                                    <li>Link default: "https://nilai.sekolah.com"</li>
+                                </ul>
+                            </div>
+                        </div>
+                        
+                        <div style="margin-top: 1rem; padding-top: 1rem; border-top: 1px solid #ffc107;">
+                            <p style="margin: 0; color: #856404; font-size: 0.9rem;"><strong>📋 Cara Kerja Excel (Mudah untuk Guru!):</strong></p>
+                            <div style="background: #e8f5e8; padding: 0.8rem; border-radius: 4px; margin: 0.5rem 0; border-left: 4px solid #28a745;">
+                                <p style="margin: 0 0 0.5rem 0; color: #155724; font-weight: 600; font-size: 0.9rem;">🎯 Langkah Mudah:</p>
+                                <ol style="margin: 0; padding-left: 1.5rem; color: #155724; font-size: 0.8rem;">
+                                    <li>Buka Excel, buat file baru</li>
+                                    <li><strong>Kolom A1:</strong> Tulis nama siswa (Ahmad Budi, Siti, dll)</li>
+                                    <li><strong>Kolom B1:</strong> Tulis NISN (1234567890, dll)</li>
+                                    <li><strong>Kolom C1:</strong> Tulis kelas (X-1, XI-2, dll)</li>
+                                    <li><strong>Kolom D1:</strong> Tulis password (ortu123, dll)</li>
+                                    <li><strong>Kolom E1:</strong> Tulis link nilai (https://...)</li>
+                                    <li>Simpan sebagai CSV, lalu upload di sini!</li>
+                                </ol>
+                            </div>
+                            <ul style="margin: 0.5rem 0; padding-left: 1.5rem; color: #856404; font-size: 0.8rem;">
+                                <li>NISN harus 10 digit angka</li>
+                                <li>Kelas format: X-1, XI-2, XII-3, dll</li>
+                                <li>Excel: Data di kolom terpisah (A, B, C, D, E)</li>
+                                <li>CSV: Pisahkan dengan koma (,) atau titik koma (;)</li>
+                                <li>Baris 1 boleh header atau langsung data</li>
+                            </ul>
+                        </div>
+                    </div>
+                    
+                    <form id="formImportFile">
+                        <input type="file" id="fileInput" accept=".csv,.xlsx,.xls" required 
+                               style="margin-bottom: 1rem; padding: 0.8rem; border: 2px dashed #dee2e6; 
+                                      border-radius: 8px; width: 100%; max-width: 400px; background: #f8f9fa;">
+                        <button type="submit">📤 Import Data Siswa</button>
+                    </form>
+                    
+
+                    
+                    <div id="importResult" style="margin-top: 1rem;"></div>
+                </div>
+            </div>
+
+            <div class="card">
+                <h2>👥 Daftar Siswa Terdaftar</h2>
+                <div id="daftarSiswa"></div>
+            </div>
+        </div>
+
+        <div id="tabLink" class="tab-content hidden">
+            <div class="card">
+                <h2>🔗 Kelola Link Akses Orang Tua</h2>
+                <p>Bagikan link berikut kepada orang tua siswa untuk mengakses portal:</p>
+                
+                <div class="link-box">
+                    <strong>Link Portal Siswa:</strong><br>
+                    <span id="portalLink"></span>
+                    <button class="copy-btn" onclick="copyPortalLink()">📋 Salin</button>
+                </div>
+                
+                <h3>📱 Link Individual per Siswa</h3>
+                <div id="daftarLinkSiswa"></div>
+            </div>
+        </div>
+
+        <div id="tabStatistik" class="tab-content hidden">
+            <div class="card">
+                <h2>📊 Statistik Sekolah</h2>
+                <div id="dashboard" class="stats-grid">
+                    <div class="stat-card">
+                        <div class="stat-number" id="totalSiswa">0</div>
+                        <div>Total Siswa</div>
+                    </div>
+                    <div class="stat-card">
+                        <div class="stat-number" id="totalKelas">0</div>
+                        <div>Kelas Aktif</div>
+                    </div>
+                    <div class="stat-card">
+                        <div class="stat-number" id="loginHariIni">0</div>
+                        <div>Login Hari Ini</div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section id="portalSiswa" class="hidden">
+        <button class="back-btn" onclick="kembaliKePortal()">← Kembali ke Portal</button>
+        
+        <div class="card">
+            <h2>🔐 Login Orang Tua/Wali</h2>
+            <form id="formLogin">
+                <input type="text" id="loginNISN" placeholder="NISN Siswa (10 digit)" maxlength="10" pattern="[0-9]{10}" required>
+                <input type="password" id="loginPassword" placeholder="Password" required>
+                <button type="submit">🚪 Masuk</button>
+            </form>
+            <div id="loginResult"></div>
+        </div>
+    </section>
+
+    <script>
+        // Data storage
+        let dataSiswa = JSON.parse(localStorage.getItem('dataSiswa')) || [];
+        let loginStats = JSON.parse(localStorage.getItem('loginStats')) || {};
+        let guruPasswords = JSON.parse(localStorage.getItem('guruPasswords')) || {};
+        let currentGuru = null;
+
+        // DOM elements
+        const btnGuru = document.getElementById('btnGuru');
+        const btnSiswa = document.getElementById('btnSiswa');
+        const portalGuru = document.getElementById('portalGuru');
+        const portalSiswa = document.getElementById('portalSiswa');
+        const portalSelection = document.getElementById('portal-selection');
+        const formTambahSiswa = document.getElementById('formTambahSiswa');
+        const daftarSiswa = document.getElementById('daftarSiswa');
+        const formLogin = document.getElementById('formLogin');
+        const formLoginGuru = document.getElementById('formLoginGuru');
+
+        // Portal navigation
+        btnGuru.onclick = () => {
+            portalSelection.classList.add('hidden');
+            document.getElementById('loginGuru').classList.remove('hidden');
+            document.body.classList.remove('portal-view');
+        };
+
+        btnSiswa.onclick = () => {
+            portalSelection.classList.add('hidden');
+            portalSiswa.classList.remove('hidden');
+            document.body.classList.remove('portal-view');
+        };
+
+        function kembaliKePortal() {
+            portalGuru.classList.add('hidden');
+            portalSiswa.classList.add('hidden');
+            document.getElementById('loginGuru').classList.add('hidden');
+            portalSelection.classList.remove('hidden');
+            document.body.classList.add('portal-view');
+            
+            // Clear login results
+            document.getElementById('loginResult').innerHTML = '';
+            const loginGuruResult = document.getElementById('loginGuruResult');
+            if (loginGuruResult) loginGuruResult.innerHTML = '';
+        }
+
+        // Tab navigation
+        document.querySelectorAll('nav button').forEach(btn => {
+            btn.onclick = () => {
+                const tab = btn.dataset.tab;
+                
+                // Update active button
+                document.querySelectorAll('nav button').forEach(b => b.classList.remove('active'));
+                btn.classList.add('active');
+                
+                // Show/hide content
+                document.querySelectorAll('.tab-content').forEach(content => {
+                    content.classList.add('hidden');
+                });
+                document.getElementById('tab' + tab.charAt(0).toUpperCase() + tab.slice(1)).classList.remove('hidden');
+                
+                if (tab === 'statistik') {
+                    updateStatistik();
+                } else if (tab === 'link') {
+                    updateLinkManagement();
+                }
+            };
+        });
+
+        // Add student form
+        formTambahSiswa.addEventListener('submit', e => {
+            e.preventDefault();
+            
+            const nama = document.getElementById('nama').value;
+            const nisn = document.getElementById('nisn').value;
+            const kelas = document.getElementById('kelas').value;
+            const password = document.getElementById('password').value;
+            const linkNilai = document.getElementById('linkNilai').value;
+
+            // Validate NISN uniqueness
+            if (dataSiswa.find(s => s.nisn === nisn)) {
+                showAlert('NISN sudah terdaftar!', 'error');
+                return;
+            }
+
+            // Validate NISN format
+            if (!/^\d{10}$/.test(nisn)) {
+                showAlert('NISN harus berupa 10 digit angka!', 'error');
+                return;
+            }
+
+            const siswa = {
+                id: Date.now(),
+                nama,
+                nisn,
+                kelas,
+                password,
+                linkNilai,
+                tanggalDaftar: new Date().toLocaleDateString('id-ID'),
+                createdBy: currentGuru ? currentGuru.nama : 'Unknown'
+            };
+
+            dataSiswa.push(siswa);
+            localStorage.setItem('dataSiswa', JSON.stringify(dataSiswa));
+            
+            showAlert('Siswa berhasil ditambahkan!', 'success');
+            formTambahSiswa.reset();
+            tampilkanDaftarSiswa();
+        });
+
+        // Display student list with teacher filtering
+        function tampilkanDaftarSiswa() {
+            // Get current teacher info
+            const guruSession = sessionStorage.getItem('guruLogin');
+            let filteredSiswa = dataSiswa;
+            
+            if (guruSession) {
+                const guru = JSON.parse(guruSession);
+                currentGuru = guru;
+                
+                // Filter students based on teacher's access
+                if (!guru.canAccessAll) {
+                    filteredSiswa = dataSiswa.filter(siswa => guru.kelas.includes(siswa.kelas));
+                }
+            }
+            
+            if (filteredSiswa.length === 0) {
+                const message = currentGuru && !currentGuru.canAccessAll 
+                    ? `Belum ada siswa terdaftar untuk kelas ${currentGuru.kelas.join(', ')}`
+                    : 'Belum ada siswa terdaftar';
+                    
+                daftarSiswa.innerHTML = `<p style="text-align: center; color: #666; padding: 2rem;">${message}</p>`;
+                return;
+            }
+
+            // Show teacher's access info
+            let accessInfo = '';
+            if (currentGuru) {
+                if (currentGuru.canAccessAll) {
+                    accessInfo = `
+                        <div style="background: #e8f5e8; padding: 1rem; border-radius: 8px; margin-bottom: 1rem; border-left: 4px solid #28a745;">
+                            <h4 style="margin: 0 0 0.5rem 0; color: #155724;">👑 ${currentGuru.nama}</h4>
+                            <p style="margin: 0; color: #155724; font-size: 0.9rem;">
+                                <strong>Akses:</strong> Semua kelas (${dataSiswa.length} siswa total)
+                            </p>
+                        </div>
+                    `;
+                } else {
+                    accessInfo = `
+                        <div style="background: #e3f2fd; padding: 1rem; border-radius: 8px; margin-bottom: 1rem; border-left: 4px solid #2196f3;">
+                            <h4 style="margin: 0 0 0.5rem 0; color: #1976d2;">👨‍🏫 ${currentGuru.nama}</h4>
+                            <p style="margin: 0; color: #1976d2; font-size: 0.9rem;">
+                                <strong>Kelas Anda:</strong> ${currentGuru.kelas.join(', ')} (${filteredSiswa.length} siswa)
+                            </p>
+                        </div>
+                    `;
+                }
+            }
+
+            daftarSiswa.innerHTML = accessInfo + filteredSiswa.map(siswa => `
+                <div class="siswa-item">
+                    <div class="siswa-info">
+                        <h4>👤 ${siswa.nama}</h4>
+                        <p><strong>NISN:</strong> ${siswa.nisn}</p>
+                        <p><strong>Kelas:</strong> ${siswa.kelas}</p>
+                        <p><strong>Terdaftar:</strong> ${siswa.tanggalDaftar}</p>
+                        ${siswa.createdBy ? `<p><strong>Ditambahkan oleh:</strong> ${siswa.createdBy}</p>` : ''}
+                    </div>
+                    <div class="siswa-actions">
+                        <button class="btn-small btn-edit" onclick="editSiswa(${siswa.id})">✏️ Edit</button>
+                        <button class="btn-small btn-delete" onclick="hapusSiswa(${siswa.id})">🗑️ Hapus</button>
+                        <button class="btn-small" style="background: #17a2b8; color: white;" onclick="buatLinkOrtu('${siswa.nisn}')">🔗 Link Ortu</button>
+                        <a href="${siswa.linkNilai}" target="_blank" rel="noopener noreferrer" class="btn-small" style="background: #28a745; color: white; text-decoration: none; display: inline-block;">📊 Nilai</a>
+                    </div>
+                </div>
+            `).join('');
+        }
+
+        // Delete student with inline confirmation
+        function hapusSiswa(id) {
+            const siswa = dataSiswa.find(s => s.id === id);
+            
+            // Create inline confirmation
+            const siswaItem = event.target.closest('.siswa-item');
+            const originalActions = siswaItem.querySelector('.siswa-actions').innerHTML;
+            
+            siswaItem.querySelector('.siswa-actions').innerHTML = `
+                <div style="display: flex; gap: 0.5rem; align-items: center; background: #fff3cd; padding: 0.5rem; border-radius: 4px; border: 1px solid #ffc107;">
+                    <span style="font-size: 0.8rem; color: #856404; font-weight: 600;">Hapus ${siswa.nama}?</span>
+                    <button class="btn-small" style="background: #dc3545; color: white;" onclick="confirmDelete(${id})">✓ Ya</button>
+                    <button class="btn-small" style="background: #6c757d; color: white;" onclick="cancelDelete(${id}, \`${originalActions.replace(/`/g, '\\`').replace(/"/g, '\\"')}\`)">✗ Batal</button>
+                </div>
+            `;
+        }
+        
+        // Confirm deletion
+        function confirmDelete(id) {
+            dataSiswa = dataSiswa.filter(s => s.id !== id);
+            localStorage.setItem('dataSiswa', JSON.stringify(dataSiswa));
+            tampilkanDaftarSiswa();
+            showAlert('Data siswa berhasil dihapus!', 'success');
+        }
+        
+        // Cancel deletion
+        function cancelDelete(id, originalActions) {
+            const siswaItem = document.querySelector(`[onclick*="hapusSiswa(${id})"]`).closest('.siswa-item');
+            siswaItem.querySelector('.siswa-actions').innerHTML = originalActions;
+        }
+
+        // Edit student with inline form
+        function editSiswa(id) {
+            const siswa = dataSiswa.find(s => s.id === id);
+            if (!siswa) return;
+            
+            const siswaItem = event.target.closest('.siswa-item');
+            const originalContent = siswaItem.innerHTML;
+            
+            siswaItem.innerHTML = `
+                <div style="width: 100%; background: #e3f2fd; padding: 1rem; border-radius: 8px; border-left: 4px solid #2196f3;">
+                    <h4 style="margin: 0 0 1rem 0; color: #1976d2;">✏️ Edit Data Siswa</h4>
+                    <form id="editForm${id}" style="padding: 0; box-shadow: none; margin: 0; background: transparent;">
+                        <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); gap: 1rem; margin-bottom: 1rem;">
+                            <input type="text" id="editNama${id}" value="${siswa.nama}" placeholder="Nama Lengkap" required 
+                                   style="padding: 0.6rem; border: 2px solid #dee2e6; border-radius: 4px; margin: 0;">
+                            <input type="text" id="editNisn${id}" value="${siswa.nisn}" placeholder="NISN" maxlength="10" pattern="[0-9]{10}" required 
+                                   style="padding: 0.6rem; border: 2px solid #dee2e6; border-radius: 4px; margin: 0;">
+                            <select id="editKelas${id}" required style="padding: 0.6rem; border: 2px solid #dee2e6; border-radius: 4px; margin: 0;">
+                                <option value="">Pilih Kelas</option>
+                                ${['X-1','X-2','X-3','X-4','X-5','X-6','X-7','X-8','X-9','X-10','X-11','X-12',
+                                   'XI-1','XI-2','XI-3','XI-4','XI-5','XI-6','XI-7','XI-8','XI-9','XI-10','XI-11','XI-12',
+                                   'XII-1','XII-2','XII-3','XII-4','XII-5','XII-6','XII-7','XII-8','XII-9','XII-10','XII-11','XII-12']
+                                   .map(k => `<option value="${k}" ${k === siswa.kelas ? 'selected' : ''}>${k}</option>`).join('')}
+                            </select>
+                        </div>
+                        <div style="display: grid; grid-template-columns: 1fr 2fr; gap: 1rem; margin-bottom: 1rem;">
+                            <input type="password" id="editPassword${id}" value="${siswa.password}" placeholder="Password" required 
+                                   style="padding: 0.6rem; border: 2px solid #dee2e6; border-radius: 4px; margin: 0;">
+                            <input type="url" id="editLinkNilai${id}" value="${siswa.linkNilai}" placeholder="Link Nilai (https://...)" required 
+                                   style="padding: 0.6rem; border: 2px solid #dee2e6; border-radius: 4px; margin: 0;">
+                        </div>
+                        <div style="display: flex; gap: 0.5rem; justify-content: flex-end;">
+                            <button type="button" onclick="saveEdit(${id})" 
+                                    style="background: #28a745; color: white; border: none; padding: 0.6rem 1rem; 
+                                           border-radius: 4px; cursor: pointer; font-weight: 600;">
+                                💾 Simpan
+                            </button>
+                            <button type="button" onclick="cancelEdit(${id}, \`${originalContent.replace(/`/g, '\\`').replace(/"/g, '\\"')}\`)" 
+                                    style="background: #6c757d; color: white; border: none; padding: 0.6rem 1rem; 
+                                           border-radius: 4px; cursor: pointer; font-weight: 600;">
+                                ❌ Batal
+                            </button>
+                        </div>
+                    </form>
+                </div>
+            `;
+        }
+        
+        // Save edited student
+        function saveEdit(id) {
+            const nama = document.getElementById(`editNama${id}`).value;
+            const nisn = document.getElementById(`editNisn${id}`).value;
+            const kelas = document.getElementById(`editKelas${id}`).value;
+            const password = document.getElementById(`editPassword${id}`).value;
+            const linkNilai = document.getElementById(`editLinkNilai${id}`).value;
+            
+            // Validate NISN format
+            if (!/^\d{10}$/.test(nisn)) {
+                showAlert('NISN harus berupa 10 digit angka!', 'error');
+                return;
+            }
+            
+            // Check if NISN is already used by another student
+            const existingSiswa = dataSiswa.find(s => s.nisn === nisn && s.id !== id);
+            if (existingSiswa) {
+                showAlert('NISN sudah digunakan oleh siswa lain!', 'error');
+                return;
+            }
+            
+            // Update student data
+            const siswaIndex = dataSiswa.findIndex(s => s.id === id);
+            if (siswaIndex !== -1) {
+                dataSiswa[siswaIndex] = {
+                    ...dataSiswa[siswaIndex],
+                    nama,
+                    nisn,
+                    kelas,
+                    password,
+                    linkNilai
+                };
+                
+                localStorage.setItem('dataSiswa', JSON.stringify(dataSiswa));
+                tampilkanDaftarSiswa();
+                showAlert('Data siswa berhasil diperbarui!', 'success');
+            }
+        }
+        
+        // Cancel edit
+        function cancelEdit(id, originalContent) {
+            const siswaItem = document.querySelector(`#editForm${id}`).closest('.siswa-item');
+            siswaItem.innerHTML = originalContent;
+        }
+
+        // Teacher login form
+        formLoginGuru.addEventListener('submit', e => {
+            e.preventDefault();
+            
+            const username = document.getElementById('usernameGuru').value;
+            const password = document.getElementById('passwordGuru').value;
+            
+            // Complete multi-teacher credentials with all class teachers
+            const validCredentials = [
+                // Admin & Management
+                { 
+                    username: 'admin', 
+                    password: 'admin123', 
+                    nama: 'Administrator Sistem', 
+                    role: 'admin',
+                    kelas: ['Semua Kelas'],
+                    canAccessAll: true
+                },
+                { 
+                    username: 'kepala', 
+                    password: 'kepala123', 
+                    nama: 'Kepala Sekolah', 
+                    role: 'kepala_sekolah',
+                    kelas: ['Semua Kelas'],
+                    canAccessAll: true
+                },
+                { 
+                    username: 'wakil', 
+                    password: 'wakil123', 
+                    nama: 'Wakil Kepala Sekolah', 
+                    role: 'wakil_kepala',
+                    kelas: ['Semua Kelas'],
+                    canAccessAll: true
+                },
+                
+                // Kelas X (X-1 sampai X-12)
+                { username: 'guru_x1', password: 'kelas123', nama: 'Guru Kelas X-1', role: 'wali_kelas', kelas: ['X-1'], canAccessAll: false },
+                { username: 'guru_x2', password: 'kelas123', nama: 'Guru Kelas X-2', role: 'wali_kelas', kelas: ['X-2'], canAccessAll: false },
+                { username: 'guru_x3', password: 'kelas123', nama: 'Guru Kelas X-3', role: 'wali_kelas', kelas: ['X-3'], canAccessAll: false },
+                { username: 'guru_x4', password: 'kelas123', nama: 'Guru Kelas X-4', role: 'wali_kelas', kelas: ['X-4'], canAccessAll: false },
+                { username: 'guru_x5', password: 'kelas123', nama: 'Guru Kelas X-5', role: 'wali_kelas', kelas: ['X-5'], canAccessAll: false },
+                { username: 'guru_x6', password: 'kelas123', nama: 'Guru Kelas X-6', role: 'wali_kelas', kelas: ['X-6'], canAccessAll: false },
+                { username: 'guru_x7', password: 'kelas123', nama: 'Guru Kelas X-7', role: 'wali_kelas', kelas: ['X-7'], canAccessAll: false },
+                { username: 'guru_x8', password: 'kelas123', nama: 'Guru Kelas X-8', role: 'wali_kelas', kelas: ['X-8'], canAccessAll: false },
+                { username: 'guru_x9', password: 'kelas123', nama: 'Guru Kelas X-9', role: 'wali_kelas', kelas: ['X-9'], canAccessAll: false },
+                { username: 'guru_x10', password: 'kelas123', nama: 'Guru Kelas X-10', role: 'wali_kelas', kelas: ['X-10'], canAccessAll: false },
+                { username: 'guru_x11', password: 'kelas123', nama: 'Guru Kelas X-11', role: 'wali_kelas', kelas: ['X-11'], canAccessAll: false },
+                { username: 'guru_x12', password: 'kelas123', nama: 'Guru Kelas X-12', role: 'wali_kelas', kelas: ['X-12'], canAccessAll: false },
+                
+                // Kelas XI (XI-1 sampai XI-12)
+                { username: 'guru_xi1', password: 'kelas123', nama: 'Guru Kelas XI-1', role: 'wali_kelas', kelas: ['XI-1'], canAccessAll: false },
+                { username: 'guru_xi2', password: 'kelas123', nama: 'Guru Kelas XI-2', role: 'wali_kelas', kelas: ['XI-2'], canAccessAll: false },
+                { username: 'guru_xi3', password: 'kelas123', nama: 'Guru Kelas XI-3', role: 'wali_kelas', kelas: ['XI-3'], canAccessAll: false },
+                { username: 'guru_xi4', password: 'kelas123', nama: 'Guru Kelas XI-4', role: 'wali_kelas', kelas: ['XI-4'], canAccessAll: false },
+                { username: 'guru_xi5', password: 'kelas123', nama: 'Guru Kelas XI-5', role: 'wali_kelas', kelas: ['XI-5'], canAccessAll: false },
+                { username: 'guru_xi6', password: 'kelas123', nama: 'Guru Kelas XI-6', role: 'wali_kelas', kelas: ['XI-6'], canAccessAll: false },
+                { username: 'guru_xi7', password: 'kelas123', nama: 'Guru Kelas XI-7', role: 'wali_kelas', kelas: ['XI-7'], canAccessAll: false },
+                { username: 'guru_xi8', password: 'kelas123', nama: 'Guru Kelas XI-8', role: 'wali_kelas', kelas: ['XI-8'], canAccessAll: false },
+                { username: 'guru_xi9', password: 'kelas123', nama: 'Guru Kelas XI-9', role: 'wali_kelas', kelas: ['XI-9'], canAccessAll: false },
+                { username: 'guru_xi10', password: 'kelas123', nama: 'Guru Kelas XI-10', role: 'wali_kelas', kelas: ['XI-10'], canAccessAll: false },
+                { username: 'guru_xi11', password: 'kelas123', nama: 'Guru Kelas XI-11', role: 'wali_kelas', kelas: ['XI-11'], canAccessAll: false },
+                { username: 'guru_xi12', password: 'kelas123', nama: 'Guru Kelas XI-12', role: 'wali_kelas', kelas: ['XI-12'], canAccessAll: false },
+                
+                // Kelas XII (XII-1 sampai XII-12)
+                { username: 'guru_xii1', password: 'kelas123', nama: 'Guru Kelas XII-1', role: 'wali_kelas', kelas: ['XII-1'], canAccessAll: false },
+                { username: 'guru_xii2', password: 'kelas123', nama: 'Guru Kelas XII-2', role: 'wali_kelas', kelas: ['XII-2'], canAccessAll: false },
+                { username: 'guru_xii3', password: 'kelas123', nama: 'Guru Kelas XII-3', role: 'wali_kelas', kelas: ['XII-3'], canAccessAll: false },
+                { username: 'guru_xii4', password: 'kelas123', nama: 'Guru Kelas XII-4', role: 'wali_kelas', kelas: ['XII-4'], canAccessAll: false },
+                { username: 'guru_xii5', password: 'kelas123', nama: 'Guru Kelas XII-5', role: 'wali_kelas', kelas: ['XII-5'], canAccessAll: false },
+                { username: 'guru_xii6', password: 'kelas123', nama: 'Guru Kelas XII-6', role: 'wali_kelas', kelas: ['XII-6'], canAccessAll: false },
+                { username: 'guru_xii7', password: 'kelas123', nama: 'Guru Kelas XII-7', role: 'wali_kelas', kelas: ['XII-7'], canAccessAll: false },
+                { username: 'guru_xii8', password: 'kelas123', nama: 'Guru Kelas XII-8', role: 'wali_kelas', kelas: ['XII-8'], canAccessAll: false },
+                { username: 'guru_xii9', password: 'kelas123', nama: 'Guru Kelas XII-9', role: 'wali_kelas', kelas: ['XII-9'], canAccessAll: false },
+                { username: 'guru_xii10', password: 'kelas123', nama: 'Guru Kelas XII-10', role: 'wali_kelas', kelas: ['XII-10'], canAccessAll: false },
+                { username: 'guru_xii11', password: 'kelas123', nama: 'Guru Kelas XII-11', role: 'wali_kelas', kelas: ['XII-11'], canAccessAll: false },
+                { username: 'guru_xii12', password: 'kelas123', nama: 'Guru Kelas XII-12', role: 'wali_kelas', kelas: ['XII-12'], canAccessAll: false }
+            ];
+            
+            // Check if user has custom password or use default
+            let guru = null;
+            const foundGuru = validCredentials.find(g => g.username === username);
+            
+            if (foundGuru) {
+                // Check custom password first, then default password
+                const customPassword = guruPasswords[username];
+                const defaultPassword = foundGuru.password;
+                
+                if ((customPassword && password === customPassword) || (!customPassword && password === defaultPassword)) {
+                    guru = foundGuru;
+                }
+            }
+            
+            if (guru) {
+                // Set current teacher
+                currentGuru = guru;
+                
+                // Store login session
+                sessionStorage.setItem('guruLogin', JSON.stringify({
+                    username: guru.username,
+                    nama: guru.nama,
+                    role: guru.role,
+                    kelas: guru.kelas,
+                    canAccessAll: guru.canAccessAll,
+                    loginTime: new Date().toISOString()
+                }));
+                
+                // Navigate to teacher portal
+                document.getElementById('loginGuru').classList.add('hidden');
+                portalGuru.classList.remove('hidden');
+                updateStatistik();
+                tampilkanDaftarSiswa(); // Refresh with filtered data
+                
+                showAlert(`Selamat datang, ${guru.nama}!`, 'success');
+                formLoginGuru.reset();
+            } else {
+                document.getElementById('loginGuruResult').innerHTML = `
+                    <div class="alert alert-error">
+                        <h3>❌ Login Gagal!</h3>
+                        <p>Username atau password tidak valid. Silakan coba lagi.</p>
+                    </div>
+                `;
+            }
+        });
+
+        // Check URL parameters for auto-fill
+        function checkURLParams() {
+            const urlParams = new URLSearchParams(window.location.search);
+            const nisn = urlParams.get('nisn');
+            
+            if (nisn && portalSiswa.classList.contains('hidden')) {
+                // Auto-navigate to student portal if NISN in URL
+                btnSiswa.click();
+                document.getElementById('loginNISN').value = nisn;
+                document.getElementById('loginNISN').focus();
+            }
+        }
+
+        // Student/Parent login
+        formLogin.addEventListener('submit', e => {
+            e.preventDefault();
+            
+            const nisn = document.getElementById('loginNISN').value.trim();
+            const password = document.getElementById('loginPassword').value.trim();
+            
+            console.log('Login attempt:', { nisn, password });
+            console.log('Available students:', dataSiswa.map(s => ({ nisn: s.nisn, password: s.password, nama: s.nama })));
+            
+            // Clean NISN - remove any non-digit characters and ensure 10 digits
+            const cleanNISN = nisn.replace(/\D/g, '');
+            
+            // Find student with exact match or cleaned NISN
+            let siswa = dataSiswa.find(s => s.nisn === nisn && s.password === password);
+            
+            // If not found, try with cleaned NISN
+            if (!siswa && cleanNISN.length === 10) {
+                siswa = dataSiswa.find(s => s.nisn === cleanNISN && s.password === password);
+            }
+            
+            // If still not found, try case-insensitive password match
+            if (!siswa) {
+                siswa = dataSiswa.find(s => 
+                    (s.nisn === nisn || s.nisn === cleanNISN) && 
+                    s.password.toLowerCase() === password.toLowerCase()
+                );
+            }
+            
+            console.log('Found student:', siswa);
+            
+            if (siswa) {
+                // Record login
+                const today = new Date().toDateString();
+                if (!loginStats[today]) loginStats[today] = 0;
+                loginStats[today]++;
+                localStorage.setItem('loginStats', JSON.stringify(loginStats));
+                
+                document.getElementById('loginResult').innerHTML = `
+                    <div class="alert alert-success">
+                        <h3>✅ Login Berhasil!</h3>
+                        <p><strong>Selamat datang, Orang Tua/Wali</strong></p>
+                        <hr style="margin: 1rem 0;">
+                        <h4>📋 Informasi Siswa:</h4>
+                        <p><strong>Nama:</strong> ${siswa.nama}</p>
+                        <p><strong>NISN:</strong> ${siswa.nisn}</p>
+                        <p><strong>Kelas:</strong> ${siswa.kelas}</p>
+                        <hr style="margin: 1rem 0;">
+                        <div style="display: flex; gap: 1rem; margin-top: 1rem; flex-wrap: wrap;">
+                            <a href="${siswa.linkNilai}" target="_blank" rel="noopener noreferrer" 
+                               style="display: inline-block; background: #28a745; color: white; padding: 0.8rem 1.5rem; 
+                                      text-decoration: none; border-radius: 8px;">
+                                📊 Lihat Nilai Siswa
+                            </a>
+                            <button onclick="showChangePassword('${siswa.nisn}')" 
+                                    style="background: #ffc107; color: #000; padding: 0.8rem 1.5rem; border: none; 
+                                           border-radius: 8px; cursor: pointer; font-weight: 600;">
+                                🔑 Ganti Password
+                            </button>
+                        </div>
+                    </div>
+                `;
+                formLogin.reset();
+            } else {
+                document.getElementById('loginResult').innerHTML = `
+                    <div class="alert alert-error">
+                        <h3>❌ Login Gagal!</h3>
+                        <p><strong>NISN atau password tidak cocok.</strong></p>
+                        ${dataSiswa.length === 0 ? 
+                            '<p style="color: #dc3545; font-weight: bold;">⚠️ Belum ada data siswa yang terdaftar! Silakan hubungi guru untuk menambahkan data Anda.</p>' :
+                            '<p>Silakan periksa kembali NISN dan password, atau hubungi guru jika masih bermasalah.</p>'
+                        }
+                        
+                        <div style="background: #fff3cd; padding: 1rem; border-radius: 4px; margin: 1rem 0; border-left: 4px solid #ffc107;">
+                            <h4 style="margin: 0 0 0.5rem 0; color: #856404;">💡 Tips Login:</h4>
+                            <ul style="margin: 0; padding-left: 1.5rem; color: #856404; font-size: 0.9rem;">
+                                <li><strong>NISN:</strong> Harus 10 digit angka (contoh: 1234567890)</li>
+                                <li><strong>Password:</strong> Sesuai yang diberikan guru (huruf besar/kecil harus sama)</li>
+                                <li><strong>Spasi:</strong> Jangan ada spasi di awal atau akhir</li>
+                                <li><strong>Copy-paste:</strong> Hati-hati saat copy-paste, bisa ada karakter tersembunyi</li>
+                            </ul>
+                        </div>
+                    </div>
+                `;
+            }
+        });
+
+        // Update statistics with teacher filtering
+        function updateStatistik() {
+            let filteredSiswa = dataSiswa;
+            
+            // Filter based on current teacher's access
+            if (currentGuru && !currentGuru.canAccessAll) {
+                filteredSiswa = dataSiswa.filter(siswa => currentGuru.kelas.includes(siswa.kelas));
+            }
+            
+            const totalSiswa = filteredSiswa.length;
+            const kelasUnik = [...new Set(filteredSiswa.map(s => s.kelas))].length;
+            const today = new Date().toDateString();
+            const loginHariIni = loginStats[today] || 0;
+            
+            document.getElementById('totalSiswa').textContent = totalSiswa;
+            document.getElementById('totalKelas').textContent = kelasUnik;
+            document.getElementById('loginHariIni').textContent = loginHariIni;
+        }
+
+        // Show alert messages
+        function showAlert(message, type) {
+            const alertDiv = document.createElement('div');
+            alertDiv.className = `alert alert-${type}`;
+            alertDiv.textContent = message;
+            
+            const form = document.getElementById('formTambahSiswa');
+            form.parentNode.insertBefore(alertDiv, form);
+            
+            setTimeout(() => {
+                alertDiv.remove();
+            }, 5000);
+        }
+
+        // Link management functions with teacher filtering
+        function updateLinkManagement() {
+            const currentURL = window.location.origin + window.location.pathname;
+            document.getElementById('portalLink').textContent = currentURL + '?portal=siswa';
+            
+            const daftarLinkSiswa = document.getElementById('daftarLinkSiswa');
+            
+            // Filter students based on teacher's access
+            let filteredSiswa = dataSiswa;
+            if (currentGuru && !currentGuru.canAccessAll) {
+                filteredSiswa = dataSiswa.filter(siswa => currentGuru.kelas.includes(siswa.kelas));
+            }
+            
+            if (filteredSiswa.length === 0) {
+                const message = currentGuru && !currentGuru.canAccessAll 
+                    ? `Belum ada siswa terdaftar untuk kelas ${currentGuru.kelas.join(', ')}`
+                    : 'Belum ada siswa terdaftar';
+                daftarLinkSiswa.innerHTML = `<p style="text-align: center; color: #666; padding: 2rem;">${message}</p>`;
+                return;
+            }
+            
+            daftarLinkSiswa.innerHTML = filteredSiswa.map(siswa => `
+                <div class="siswa-item">
+                    <div class="siswa-info">
+                        <h4>👤 ${siswa.nama} (${siswa.kelas})</h4>
+                        <p><strong>NISN:</strong> ${siswa.nisn}</p>
+                        <div class="link-box" style="margin-top: 0.5rem;">
+                            <small><strong>Link Khusus:</strong></small><br>
+                            <span style="font-size: 0.9rem;">${currentURL}?nisn=${siswa.nisn}</span>
+                        </div>
+                    </div>
+                    <div class="siswa-actions">
+                        <button class="btn-small copy-btn" onclick="copyStudentLink('${siswa.nisn}')">📋 Salin Link</button>
+                    </div>
+                </div>
+            `).join('');
+        }
+        
+        function buatLinkOrtu(nisn) {
+            const currentURL = window.location.origin + window.location.pathname;
+            const linkKhusus = currentURL + '?nisn=' + nisn;
+            const siswa = dataSiswa.find(s => s.nisn === nisn);
+            
+            const modal = document.createElement('div');
+            modal.className = 'modal';
+            modal.innerHTML = `
+                <div class="modal-content">
+                    <h3>🔗 Link Akses untuk Orang Tua</h3>
+                    <p><strong>Siswa:</strong> ${siswa.nama} (${siswa.kelas})</p>
+                    
+                    <div class="link-box">
+                        <strong>Link Khusus:</strong><br>
+                        <span id="linkKhusus">${linkKhusus}</span>
+                        <button class="copy-btn" onclick="copyText('${linkKhusus}')">📋 Salin</button>
+                    </div>
+                    
+                    <p><small>💡 Link ini akan otomatis mengisi NISN saat dibuka</small></p>
+                    
+                    <div style="margin-top: 1rem;">
+                        <button onclick="closeModal()" style="background: #6c757d; color: white; border: none; padding: 0.5rem 1rem; border-radius: 4px;">
+                            Tutup
+                        </button>
+                    </div>
+                </div>
+            `;
+            
+            document.body.appendChild(modal);
+        }
+        
+        function copyPortalLink() {
+            const link = document.getElementById('portalLink').textContent;
+            copyText(link);
+        }
+        
+        function copyStudentLink(nisn) {
+            const currentURL = window.location.origin + window.location.pathname;
+            const link = currentURL + '?nisn=' + nisn;
+            copyText(link);
+        }
+        
+        function copyText(text) {
+            navigator.clipboard.writeText(text).then(() => {
+                showAlert('Link berhasil disalin ke clipboard!', 'success');
+            }).catch(() => {
+                // Fallback for older browsers
+                const textArea = document.createElement('textarea');
+                textArea.value = text;
+                document.body.appendChild(textArea);
+                textArea.select();
+                document.execCommand('copy');
+                document.body.removeChild(textArea);
+                showAlert('Link berhasil disalin!', 'success');
+            });
+        }
+        
+
+        
+        function closeModal() {
+            const modal = document.querySelector('.modal');
+            if (modal) {
+                modal.remove();
+            }
+        }
+
+        // Show change password modal for students
+        function showChangePassword(nisn) {
+            const siswa = dataSiswa.find(s => s.nisn === nisn);
+            
+            const modal = document.createElement('div');
+            modal.className = 'modal';
+            modal.innerHTML = `
+                <div class="modal-content">
+                    <h3>🔑 Ganti Password Siswa</h3>
+                    <p><strong>Siswa:</strong> ${siswa.nama} (${siswa.kelas})</p>
+                    <p><strong>NISN:</strong> ${siswa.nisn}</p>
+                    
+                    <form id="formGantiPassword" style="padding: 0; box-shadow: none; margin: 0;">
+                        <input type="password" id="passwordLama" placeholder="Password Lama" required 
+                               style="max-width: 100%; margin: 0.5rem 0;">
+                        <input type="password" id="passwordBaru" placeholder="Password Baru" required 
+                               style="max-width: 100%; margin: 0.5rem 0;">
+                        <input type="password" id="konfirmasiPassword" placeholder="Konfirmasi Password Baru" required 
+                               style="max-width: 100%; margin: 0.5rem 0;">
+                        
+                        <div style="margin-top: 1rem; display: flex; gap: 0.5rem;">
+                            <button type="submit" style="background: #28a745; color: white; border: none; 
+                                                         padding: 0.8rem 1.5rem; border-radius: 4px; cursor: pointer; flex: 1;">
+                                🔄 Ganti Password
+                            </button>
+                            <button type="button" onclick="closeModal()" 
+                                    style="background: #6c757d; color: white; border: none; 
+                                           padding: 0.8rem 1.5rem; border-radius: 4px; cursor: pointer;">
+                                Batal
+                            </button>
+                        </div>
+                    </form>
+                    
+                    <div id="changePasswordResult" style="margin-top: 1rem;"></div>
+                </div>
+            `;
+            
+            document.body.appendChild(modal);
+            
+            // Handle form submission
+            document.getElementById('formGantiPassword').addEventListener('submit', e => {
+                e.preventDefault();
+                changePassword(nisn);
+            });
+        }
+
+        // Show change password modal for teachers
+        function showChangeGuruPassword() {
+            if (!currentGuru) {
+                showAlert('Tidak dapat mengakses fitur ini. Silakan login ulang.', 'error');
+                return;
+            }
+            
+            const modal = document.createElement('div');
+            modal.className = 'modal';
+            modal.innerHTML = `
+                <div class="modal-content">
+                    <h3>🔑 Ganti Password Guru</h3>
+                    <p><strong>Guru:</strong> ${currentGuru.nama}</p>
+                    <p><strong>Username:</strong> ${currentGuru.username}</p>
+                    <p><strong>Role:</strong> ${currentGuru.role === 'admin' ? 'Administrator' : currentGuru.role === 'kepala_sekolah' ? 'Kepala Sekolah' : currentGuru.role === 'wakil_kepala' ? 'Wakil Kepala' : 'Wali Kelas'}</p>
+                    
+                    <div style="background: #fff3cd; padding: 1rem; border-radius: 8px; margin: 1rem 0; border-left: 4px solid #ffc107;">
+                        <h4 style="margin: 0 0 0.5rem 0; color: #856404;">⚠️ Penting!</h4>
+                        <ul style="margin: 0; padding-left: 1.5rem; color: #856404; font-size: 0.9rem;">
+                            <li>Password baru akan menggantikan password default sistem</li>
+                            <li>Pastikan Anda mengingat password baru yang dibuat</li>
+                            <li>Password minimal 6 karakter untuk keamanan</li>
+                            <li>Jika lupa password baru, hubungi administrator sistem</li>
+                        </ul>
+                    </div>
+                    
+                    <form id="formGantiPasswordGuru" style="padding: 0; box-shadow: none; margin: 0;">
+                        <label for="passwordGuruLama" style="display: block; margin-bottom: 0.3rem; font-weight: 600; color: #495057;">Password Lama:</label>
+                        <input type="password" id="passwordGuruLama" placeholder="Masukkan password lama" required 
+                               style="max-width: 100%; margin: 0.5rem 0;">
+                        
+                        <label for="passwordGuruBaru" style="display: block; margin-bottom: 0.3rem; font-weight: 600; color: #495057;">Password Baru:</label>
+                        <input type="password" id="passwordGuruBaru" placeholder="Masukkan password baru (min. 6 karakter)" required minlength="6"
+                               style="max-width: 100%; margin: 0.5rem 0;">
+                        
+                        <label for="konfirmasiPasswordGuru" style="display: block; margin-bottom: 0.3rem; font-weight: 600; color: #495057;">Konfirmasi Password Baru:</label>
+                        <input type="password" id="konfirmasiPasswordGuru" placeholder="Ulangi password baru" required 
+                               style="max-width: 100%; margin: 0.5rem 0;">
+                        
+                        <div style="margin-top: 1.5rem; display: flex; gap: 0.5rem;">
+                            <button type="submit" style="background: #28a745; color: white; border: none; 
+                                                         padding: 0.8rem 1.5rem; border-radius: 4px; cursor: pointer; flex: 1; font-weight: 600;">
+                                🔄 Ganti Password
+                            </button>
+                            <button type="button" onclick="closeModal()" 
+                                    style="background: #6c757d; color: white; border: none; 
+                                           padding: 0.8rem 1.5rem; border-radius: 4px; cursor: pointer; font-weight: 600;">
+                                ❌ Batal
+                            </button>
+                        </div>
+                    </form>
+                    
+                    <div id="changeGuruPasswordResult" style="margin-top: 1rem;"></div>
+                </div>
+            `;
+            
+            document.body.appendChild(modal);
+            
+            // Handle form submission
+            document.getElementById('formGantiPasswordGuru').addEventListener('submit', e => {
+                e.preventDefault();
+                changeGuruPassword();
+            });
+        }
+
+        // Change password function for students
+        function changePassword(nisn) {
+            const passwordLama = document.getElementById('passwordLama').value;
+            const passwordBaru = document.getElementById('passwordBaru').value;
+            const konfirmasiPassword = document.getElementById('konfirmasiPassword').value;
+            
+            const siswa = dataSiswa.find(s => s.nisn === nisn);
+            const resultDiv = document.getElementById('changePasswordResult');
+            
+            // Validate old password
+            if (passwordLama !== siswa.password) {
+                resultDiv.innerHTML = `
+                    <div class="alert alert-error">
+                        <strong>❌ Error!</strong> Password lama tidak sesuai.
+                    </div>
+                `;
+                return;
+            }
+            
+            // Validate new password confirmation
+            if (passwordBaru !== konfirmasiPassword) {
+                resultDiv.innerHTML = `
+                    <div class="alert alert-error">
+                        <strong>❌ Error!</strong> Konfirmasi password tidak sesuai.
+                    </div>
+                `;
+                return;
+            }
+            
+            // Validate password length
+            if (passwordBaru.length < 4) {
+                resultDiv.innerHTML = `
+                    <div class="alert alert-error">
+                        <strong>❌ Error!</strong> Password baru minimal 4 karakter.
+                    </div>
+                `;
+                return;
+            }
+            
+            // Update password
+            const siswaIndex = dataSiswa.findIndex(s => s.nisn === nisn);
+            dataSiswa[siswaIndex].password = passwordBaru;
+            localStorage.setItem('dataSiswa', JSON.stringify(dataSiswa));
+            
+            resultDiv.innerHTML = `
+                <div class="alert alert-success">
+                    <strong>✅ Berhasil!</strong> Password berhasil diubah. Silakan login ulang dengan password baru.
+                </div>
+            `;
+            
+            // Clear form
+            document.getElementById('formGantiPassword').reset();
+            
+            // Auto close modal after 3 seconds
+            setTimeout(() => {
+                closeModal();
+                // Clear login form and results
+                document.getElementById('loginResult').innerHTML = '';
+                document.getElementById('formLogin').reset();
+            }, 3000);
+        }
+
+        // Change password function for teachers
+        function changeGuruPassword() {
+            const passwordLama = document.getElementById('passwordGuruLama').value;
+            const passwordBaru = document.getElementById('passwordGuruBaru').value;
+            const konfirmasiPassword = document.getElementById('konfirmasiPasswordGuru').value;
+            
+            const resultDiv = document.getElementById('changeGuruPasswordResult');
+            
+            // Get current password (custom or default)
+            const currentPassword = guruPasswords[currentGuru.username] || getDefaultPassword(currentGuru.username);
+            
+            // Validate old password
+            if (passwordLama !== currentPassword) {
+                resultDiv.innerHTML = `
+                    <div class="alert alert-error">
+                        <strong>❌ Error!</strong> Password lama tidak sesuai.
+                    </div>
+                `;
+                return;
+            }
+            
+            // Validate new password confirmation
+            if (passwordBaru !== konfirmasiPassword) {
+                resultDiv.innerHTML = `
+                    <div class="alert alert-error">
+                        <strong>❌ Error!</strong> Konfirmasi password tidak sesuai.
+                    </div>
+                `;
+                return;
+            }
+            
+            // Validate password length
+            if (passwordBaru.length < 6) {
+                resultDiv.innerHTML = `
+                    <div class="alert alert-error">
+                        <strong>❌ Error!</strong> Password baru minimal 6 karakter untuk keamanan.
+                    </div>
+                `;
+                return;
+            }
+            
+            // Check if new password is same as old
+            if (passwordBaru === passwordLama) {
+                resultDiv.innerHTML = `
+                    <div class="alert alert-error">
+                        <strong>❌ Error!</strong> Password baru harus berbeda dari password lama.
+                    </div>
+                `;
+                return;
+            }
+            
+            // Update password
+            guruPasswords[currentGuru.username] = passwordBaru;
+            localStorage.setItem('guruPasswords', JSON.stringify(guruPasswords));
+            
+            resultDiv.innerHTML = `
+                <div class="alert alert-success">
+                    <h4 style="margin: 0 0 0.5rem 0;">✅ Password Berhasil Diubah!</h4>
+                    <p style="margin: 0 0 0.5rem 0;"><strong>Username:</strong> ${currentGuru.username}</p>
+                    <p style="margin: 0 0 0.5rem 0;"><strong>Password Baru:</strong> ${passwordBaru}</p>
+                    <div style="background: #fff3cd; padding: 0.8rem; border-radius: 4px; margin: 0.8rem 0; border-left: 4px solid #ffc107;">
+                        <p style="margin: 0; color: #856404; font-size: 0.9rem; font-weight: 600;">
+                            🔒 <strong>Penting:</strong> Catat password baru Anda! Gunakan password ini untuk login selanjutnya.
+                        </p>
+                    </div>
+                </div>
+            `;
+            
+            // Clear form
+            document.getElementById('formGantiPasswordGuru').reset();
+            
+            // Auto close modal after 5 seconds
+            setTimeout(() => {
+                closeModal();
+                showAlert(`Password berhasil diubah untuk ${currentGuru.nama}. Gunakan password baru untuk login selanjutnya.`, 'success');
+            }, 5000);
+        }
+
+        // Get default password for teacher
+        function getDefaultPassword(username) {
+            if (username === 'admin') return 'admin123';
+            if (username === 'kepala') return 'kepala123';
+            if (username === 'wakil') return 'wakil123';
+            return 'kelas123'; // Default for all class teachers
+        }
+
+        // Logout function
+        function logoutGuru() {
+            // Create inline confirmation instead of browser confirm
+            const logoutBtn = event.target;
+            const originalText = logoutBtn.innerHTML;
+            
+            logoutBtn.innerHTML = '❓ Yakin Logout?';
+            logoutBtn.style.background = '#ffc107';
+            logoutBtn.style.color = '#000';
+            
+            // Create confirmation buttons
+            const confirmContainer = document.createElement('div');
+            confirmContainer.style.cssText = 'display: flex; gap: 0.5rem; margin-left: 0.5rem;';
+            
+            const confirmBtn = document.createElement('button');
+            confirmBtn.innerHTML = '✓ Ya';
+            confirmBtn.style.cssText = 'background: #dc3545; color: white; border: none; padding: 0.5rem 1rem; border-radius: 4px; cursor: pointer;';
+            
+            const cancelBtn = document.createElement('button');
+            cancelBtn.innerHTML = '✗ Batal';
+            cancelBtn.style.cssText = 'background: #6c757d; color: white; border: none; padding: 0.5rem 1rem; border-radius: 4px; cursor: pointer;';
+            
+            confirmContainer.appendChild(confirmBtn);
+            confirmContainer.appendChild(cancelBtn);
+            logoutBtn.parentNode.appendChild(confirmContainer);
+            
+            // Handle confirmation
+            confirmBtn.onclick = () => {
+                sessionStorage.removeItem('guruLogin');
+                kembaliKePortal();
+                showAlert('Berhasil logout dari portal guru', 'success');
+            };
+            
+            // Handle cancellation
+            cancelBtn.onclick = () => {
+                logoutBtn.innerHTML = originalText;
+                logoutBtn.style.background = '#dc3545';
+                logoutBtn.style.color = 'white';
+                confirmContainer.remove();
+            };
+            
+            // Auto-cancel after 5 seconds
+            setTimeout(() => {
+                if (confirmContainer.parentNode) {
+                    logoutBtn.innerHTML = originalText;
+                    logoutBtn.style.background = '#dc3545';
+                    logoutBtn.style.color = 'white';
+                    confirmContainer.remove();
+                }
+            }, 5000);
+        }
+
+        // Check teacher session
+        function checkGuruSession() {
+            const guruSession = sessionStorage.getItem('guruLogin');
+            if (guruSession) {
+                const guru = JSON.parse(guruSession);
+                currentGuru = guru;
+                document.getElementById('welcomeGuru').textContent = `Selamat datang, ${guru.nama}`;
+                return true;
+            }
+            return false;
+        }
+
+        // Tab switching for input methods
+        function switchInputTab(tab) {
+            // Update tab buttons
+            document.querySelectorAll('.input-tab').forEach(btn => btn.classList.remove('active'));
+            document.getElementById('tab' + tab.charAt(0).toUpperCase() + tab.slice(1)).classList.add('active');
+            
+            // Show/hide content
+            if (tab === 'manual') {
+                document.getElementById('inputManual').classList.remove('hidden');
+                document.getElementById('inputFile').classList.add('hidden');
+            } else {
+                document.getElementById('inputManual').classList.add('hidden');
+                document.getElementById('inputFile').classList.remove('hidden');
+            }
+        }
+
+        // Enhanced file import form handler with Excel support
+        document.getElementById('formImportFile').addEventListener('submit', e => {
+            e.preventDefault();
+            
+            const fileInput = document.getElementById('fileInput');
+            const file = fileInput.files[0];
+            
+            if (!file) {
+                showImportAlert('Silakan pilih file Excel atau CSV terlebih dahulu!', 'error');
+                return;
+            }
+            
+            const fileName = file.name.toLowerCase();
+            
+            if (fileName.endsWith('.csv')) {
+                showImportAlert('📄 Memproses file CSV...', 'success');
+                processCSVFile(file);
+            } else if (fileName.endsWith('.xlsx') || fileName.endsWith('.xls')) {
+                showImportAlert('📊 Memproses file Excel... Pastikan data sudah disimpan sebagai CSV atau copy-paste dari Excel.', 'success');
+                processCSVFile(file);
+            } else if (fileName.endsWith('.txt')) {
+                showImportAlert('📄 Memproses file teks... Pastikan menggunakan separator yang benar.', 'success');
+                processCSVFile(file);
+            } else {
+                showImportAlert('❌ Format file tidak didukung! Gunakan file Excel (.xlsx, .xls), CSV (.csv), atau teks (.txt). Untuk Excel, simpan sebagai CSV terlebih dahulu.', 'error');
+            }
+        });
+
+        // Process CSV/Excel file with enhanced compatibility
+        function processCSVFile(file) {
+            const reader = new FileReader();
+            
+            reader.onload = function(e) {
+                let text = e.target.result;
+                
+                // Handle different encodings and clean up
+                // Remove BOM if present
+                if (text.charCodeAt(0) === 0xFEFF) {
+                    text = text.slice(1);
+                }
+                
+                // Handle different line endings and clean up
+                const normalizedText = text.replace(/\r\n/g, '\n').replace(/\r/g, '\n');
+                let lines = normalizedText.split('\n').filter(line => line.trim());
+                
+                // Additional cleanup for Excel exports
+                lines = lines.map(line => {
+                    // Remove extra quotes that Excel sometimes adds
+                    line = line.trim();
+                    // Handle Excel's way of exporting with quotes around entire line
+                    if (line.startsWith('"') && line.endsWith('"') && line.indexOf('"', 1) === line.length - 1) {
+                        line = line.slice(1, -1);
+                    }
+                    return line;
+                }).filter(line => line.length > 0);
+                
+                if (lines.length === 0) {
+                    showImportAlert('File kosong atau tidak valid! Pastikan file Excel/CSV berisi data.', 'error');
+                    return;
+                }
+                
+                // Get selected format
+                const selectedFormat = document.querySelector('input[name="importFormat"]:checked').value;
+                
+                let successCount = 0;
+                let errorCount = 0;
+                let errors = [];
+                
+                // Enhanced header detection for Excel files
+                const firstLine = lines[0].toLowerCase();
+                const hasHeader = firstLine.includes('nama') || firstLine.includes('nisn') || firstLine.includes('kelas') || 
+                                 firstLine.includes('password') || firstLine.includes('link') || 
+                                 firstLine.includes('a') && firstLine.includes('b') && firstLine.includes('c');
+                const startIndex = hasHeader ? 1 : 0;
+                
+                console.log('Processing file:', {
+                    totalLines: lines.length,
+                    hasHeader,
+                    startIndex,
+                    selectedFormat,
+                    firstLine: lines[0]
+                });
+                
+                for (let i = startIndex; i < lines.length; i++) {
+                    const line = lines[i].trim();
+                    if (!line) continue;
+                    
+                    // Better CSV parsing - handle quotes and commas inside quotes
+                    const columns = parseCSVLine(line);
+                    
+                    console.log(`Baris ${i + 1}:`, columns);
+                    
+                    let nama, nisn, kelas, password, linkNilai;
+                    
+                    // Process based on selected format with Excel-specific handling
+                    if (selectedFormat === 'lengkap') {
+                        if (columns.length < 5) {
+                            // More helpful error message for Excel users
+                            const excelColumns = ['A', 'B', 'C', 'D', 'E'];
+                            const foundColumns = columns.map((col, idx) => `${excelColumns[idx] || '?'}="${col}"`);
+                            errors.push(`Baris ${i + 1}: Butuh 5 kolom Excel (A=Nama, B=NISN, C=Kelas, D=Password, E=Link). Ditemukan ${columns.length} kolom: [${foundColumns.join(', ')}]. Pastikan data diisi di kolom A sampai E di Excel!`);
+                            errorCount++;
+                            continue;
+                        }
+                        [nama, nisn, kelas, password, linkNilai] = columns;
+                        
+                        // Clean up data
+                        nama = nama.trim();
+                        nisn = nisn.trim();
+                        kelas = kelas.trim();
+                        password = password.trim();
+                        linkNilai = linkNilai.trim();
+                        
+                        // Validate all fields for complete format
+                        if (!nama || !nisn || !kelas || !password || !linkNilai) {
+                            errors.push(`Baris ${i + 1}: Ada kolom kosong - Nama:'${nama}', NISN:'${nisn}', Kelas:'${kelas}', Password:'${password}', Link:'${linkNilai}'`);
+                            errorCount++;
+                            continue;
+                        }
+                        
+                        // More flexible link validation
+                        if (!linkNilai.startsWith('http') && !linkNilai.startsWith('www.')) {
+                            // Auto-fix common link formats
+                            if (linkNilai.includes('.')) {
+                                linkNilai = 'https://' + linkNilai;
+                            } else {
+                                errors.push(`Baris ${i + 1}: Link nilai tidak valid: '${linkNilai}'. Harus dimulai dengan http/https atau www.`);
+                                errorCount++;
+                                continue;
+                            }
+                        }
+                        
+                    } else if (selectedFormat === 'dasar') {
+                        if (columns.length < 3) {
+                            const excelColumns = ['A', 'B', 'C'];
+                            const foundColumns = columns.map((col, idx) => `${excelColumns[idx] || '?'}="${col}"`);
+                            errors.push(`Baris ${i + 1}: Butuh 3 kolom Excel (A=Nama, B=NISN, C=Link). Ditemukan ${columns.length} kolom: [${foundColumns.join(', ')}]. Pastikan data diisi di kolom A, B, dan C di Excel!`);
+                            errorCount++;
+                            continue;
+                        }
+                        [nama, nisn, linkNilai] = columns;
+                        
+                        // Clean up data
+                        nama = nama.trim();
+                        nisn = nisn.trim();
+                        linkNilai = linkNilai.trim();
+                        
+                        // Set defaults for missing fields
+                        kelas = 'Belum Ditentukan';
+                        password = 'siswa123';
+                        
+                        if (!nama || !nisn || !linkNilai) {
+                            errors.push(`Baris ${i + 1}: Ada kolom kosong - Nama:'${nama}', NISN:'${nisn}', Link:'${linkNilai}'`);
+                            errorCount++;
+                            continue;
+                        }
+                        
+                        // Validate link format for dasar format
+                        if (!linkNilai.startsWith('http') && !linkNilai.startsWith('www.')) {
+                            // Auto-fix common link formats
+                            if (linkNilai.includes('.')) {
+                                linkNilai = 'https://' + linkNilai;
+                            } else {
+                                errors.push(`Baris ${i + 1}: Link nilai tidak valid: '${linkNilai}'. Harus dimulai dengan http/https atau www.`);
+                                errorCount++;
+                                continue;
+                            }
+                        }
+                        
+                    } else if (selectedFormat === 'minimal') {
+                        if (columns.length < 2) {
+                            const excelColumns = ['A', 'B'];
+                            const foundColumns = columns.map((col, idx) => `${excelColumns[idx] || '?'}="${col}"`);
+                            errors.push(`Baris ${i + 1}: Butuh 2 kolom Excel (A=Nama, B=NISN). Ditemukan ${columns.length} kolom: [${foundColumns.join(', ')}]. Pastikan data diisi di kolom A dan B di Excel!`);
+                            errorCount++;
+                            continue;
+                        }
+                        [nama, nisn] = columns;
+                        
+                        // Clean up data
+                        nama = nama.trim();
+                        nisn = nisn.trim();
+                        
+                        // Set defaults for missing fields
+                        kelas = 'Belum Ditentukan';
+                        password = 'siswa123';
+                        linkNilai = 'https://nilai.sekolah.com';
+                        
+                        if (!nama || !nisn) {
+                            errors.push(`Baris ${i + 1}: Ada kolom kosong - Nama:'${nama}', NISN:'${nisn}'`);
+                            errorCount++;
+                            continue;
+                        }
+                    }
+                    
+                    // Common validations
+                    // Clean NISN - remove any non-digit characters
+                    nisn = nisn.replace(/\D/g, '');
+                    
+                    if (!/^\d{10}$/.test(nisn)) {
+                        errors.push(`Baris ${i + 1}: NISN harus 10 digit angka. Ditemukan: '${nisn}' (${nisn.length} karakter)`);
+                        errorCount++;
+                        continue;
+                    }
+                    
+                    if (dataSiswa.find(s => s.nisn === nisn)) {
+                        errors.push(`Baris ${i + 1}: NISN ${nisn} sudah terdaftar untuk siswa lain`);
+                        errorCount++;
+                        continue;
+                    }
+                    
+                    // Validate class format (skip for dasar and minimal formats as they use default)
+                    if (selectedFormat === 'lengkap' && kelas !== 'Belum Ditentukan') {
+                        const validKelasPattern = /^(X|XI|XII)-\d+$/;
+                        if (!validKelasPattern.test(kelas)) {
+                            // Try to auto-fix common formats
+                            if (/^(10|11|12)/.test(kelas)) {
+                                kelas = kelas.replace('10', 'X').replace('11', 'XI').replace('12', 'XII');
+                            }
+                            if (!validKelasPattern.test(kelas)) {
+                                errors.push(`Baris ${i + 1}: Format kelas tidak valid: '${kelas}'. Gunakan format X-1, XI-2, XII-3, dll.`);
+                                errorCount++;
+                                continue;
+                            }
+                        }
+                    }
+                    
+                    // Add student
+                    const siswa = {
+                        id: Date.now() + Math.random() * 1000 + i,
+                        nama,
+                        nisn,
+                        kelas,
+                        password,
+                        linkNilai,
+                        tanggalDaftar: new Date().toLocaleDateString('id-ID')
+                    };
+                    
+                    dataSiswa.push(siswa);
+                    successCount++;
+                    
+                    console.log('Added student:', siswa);
+                }
+                
+                // Save to localStorage
+                localStorage.setItem('dataSiswa', JSON.stringify(dataSiswa));
+                
+                // Show results with Excel-specific messaging
+                let resultHTML = `
+                    <div class="alert alert-success">
+                        <h4>📊 Hasil Import Excel/CSV (Format ${selectedFormat.toUpperCase()}):</h4>
+                        <p><strong>✅ Berhasil diimport:</strong> ${successCount} siswa dari Excel</p>
+                        <p><strong>❌ Gagal diproses:</strong> ${errorCount} baris</p>
+                        <p><strong>📄 Total baris diproses:</strong> ${lines.length - startIndex} baris data</p>
+                        ${hasHeader ? '<p><strong>📋 Header Excel terdeteksi:</strong> Baris pertama dilewati</p>' : '<p><strong>📋 Tidak ada header:</strong> Semua baris diproses sebagai data</p>'}
+                        <p><strong>🔍 Separator terdeteksi:</strong> ${lines.length > 0 ? (lines[0].includes(';') ? 'Titik koma (;) - Excel Indonesia' : lines[0].includes('\t') ? 'Tab - Excel copy-paste' : 'Koma (,) - CSV standar') : 'Tidak terdeteksi'}</p>
+                    </div>
+                `;
+                
+                if (errors.length > 0) {
+                    resultHTML += `
+                        <div class="alert alert-error" style="margin-top: 1rem;">
+                            <h4>⚠️ Detail Error (${errors.length} error):</h4>
+                            <div style="max-height: 200px; overflow-y: auto; background: #fff; padding: 1rem; border-radius: 4px; margin: 0.5rem 0;">
+                                <ul style="margin: 0; padding-left: 1.5rem; font-size: 0.9rem;">
+                                    ${errors.slice(0, 15).map(error => `<li style="margin-bottom: 0.3rem;">${error}</li>`).join('')}
+                                    ${errors.length > 15 ? `<li style="font-weight: bold; color: #dc3545;">... dan ${errors.length - 15} error lainnya</li>` : ''}
+                                </ul>
+                            </div>
+                        </div>
+                    `;
+                }
+                
+                if (successCount > 0) {
+                    resultHTML += `
+                        <div style="background: #d4edda; padding: 1rem; border-radius: 8px; margin-top: 1rem; border-left: 4px solid #28a745;">
+                            <h4 style="margin: 0 0 0.5rem 0; color: #155724;">🎉 Import Berhasil!</h4>
+                            <p style="margin: 0; color: #155724; font-size: 0.9rem;">
+                                ${successCount} siswa berhasil ditambahkan ke sistem. Data sudah tersimpan dan siap digunakan!
+                            </p>
+                        </div>
+                    `;
+                }
+                
+                document.getElementById('importResult').innerHTML = resultHTML;
+                
+                // Refresh student list
+                tampilkanDaftarSiswa();
+                
+                // Clear file input
+                document.getElementById('fileInput').value = '';
+                
+                // Auto scroll to results
+                document.getElementById('importResult').scrollIntoView({ behavior: 'smooth' });
+            };
+            
+            // Try different encodings for better compatibility
+            reader.onerror = function() {
+                showImportAlert('Error membaca file. Pastikan file adalah CSV atau Excel yang valid.', 'error');
+            };
+            
+            reader.readAsText(file, 'UTF-8');
+        }
+        
+        // Enhanced CSV parsing function for Excel compatibility
+        function parseCSVLine(line) {
+            // Auto-detect separator with priority: semicolon > comma > tab
+            let separator = ',';
+            
+            // Count different separators
+            const semicolonCount = (line.match(/;/g) || []).length;
+            const commaCount = (line.match(/,/g) || []).length;
+            const tabCount = (line.match(/\t/g) || []).length;
+            
+            // Priority: semicolon (Excel default in many regions) > tab > comma
+            if (semicolonCount > 0 && semicolonCount >= commaCount) {
+                separator = ';';
+            } else if (tabCount > 0 && tabCount >= commaCount) {
+                separator = '\t';
+            } else {
+                separator = ',';
+            }
+            
+            console.log('Detected separator:', separator === '\t' ? 'TAB' : separator, 'Line:', line);
+            
+            // Handle Excel's way of saving CSV (especially with semicolons)
+            const result = [];
+            let current = '';
+            let inQuotes = false;
+            
+            for (let i = 0; i < line.length; i++) {
+                const char = line[i];
+                
+                if (char === '"') {
+                    inQuotes = !inQuotes;
+                } else if (char === separator && !inQuotes) {
+                    result.push(current.trim());
+                    current = '';
+                } else {
+                    current += char;
+                }
+            }
+            
+            result.push(current.trim());
+            
+            // Clean up quotes and extra spaces from values
+            const cleanedResult = result.map(value => {
+                // Remove surrounding quotes
+                value = value.replace(/^"(.*)"$/, '$1');
+                // Remove extra spaces
+                value = value.trim();
+                // Handle Excel's double quotes escaping
+                value = value.replace(/""/g, '"');
+                return value;
+            });
+            
+            console.log('Parsed columns:', cleanedResult);
+            return cleanedResult;
+        }
+
+        // Show import alert
+        function showImportAlert(message, type) {
+            document.getElementById('importResult').innerHTML = `
+                <div class="alert alert-${type}">
+                    ${message}
+                </div>
+            `;
+        }
+
+        // Handle format selection change
+        function handleFormatChange() {
+            const selectedFormat = document.querySelector('input[name="importFormat"]:checked').value;
+            
+            // Hide all info sections
+            document.getElementById('infoLengkap').classList.add('hidden');
+            document.getElementById('infoDasar').classList.add('hidden');
+            document.getElementById('infoMinimal').classList.add('hidden');
+            
+            document.getElementById('contohLengkap').classList.add('hidden');
+            document.getElementById('contohDasar').classList.add('hidden');
+            document.getElementById('contohMinimal').classList.add('hidden');
+            
+            // Show selected format info
+            document.getElementById('info' + selectedFormat.charAt(0).toUpperCase() + selectedFormat.slice(1)).classList.remove('hidden');
+            document.getElementById('contoh' + selectedFormat.charAt(0).toUpperCase() + selectedFormat.slice(1)).classList.remove('hidden');
+        }
+
+        // Download CSV template
+        function downloadTemplate() {
+            const selectedFormat = document.querySelector('input[name="importFormat"]:checked').value;
+            
+            let csvContent;
+            
+            if (selectedFormat === 'lengkap') {
+                csvContent = `Nama;NISN;Kelas;Password;LinkNilai
+Ahmad Budi;1234567890;X-1;password123;https://nilai.sekolah.com/ahmad
+Siti Aminah;1234567891;X-1;password456;https://nilai.sekolah.com/siti
+Budi Santoso;1234567892;X-2;password789;https://nilai.sekolah.com/budi
+Dewi Sari;1234567893;XI-1;password321;https://nilai.sekolah.com/dewi
+Andi Wijaya;1234567894;XI-2;password654;https://nilai.sekolah.com/andi`;
+            } else if (selectedFormat === 'dasar') {
+                csvContent = `Nama;NISN;LinkNilai
+Ahmad Budi;1234567890;https://nilai.sekolah.com/ahmad
+Siti Aminah;1234567891;https://nilai.sekolah.com/siti
+Budi Santoso;1234567892;https://nilai.sekolah.com/budi
+Dewi Sari;1234567893;https://nilai.sekolah.com/dewi
+Andi Wijaya;1234567894;https://nilai.sekolah.com/andi
+Maya Putri;1234567895;https://nilai.sekolah.com/maya
+Rizki Pratama;1234567896;https://nilai.sekolah.com/rizki
+Indah Lestari;1234567897;https://nilai.sekolah.com/indah
+Fajar Nugroho;1234567898;https://nilai.sekolah.com/fajar
+Sari Wulandari;1234567899;https://nilai.sekolah.com/sari`;
+            } else if (selectedFormat === 'minimal') {
+                csvContent = `Nama;NISN
+Ahmad Budi;1234567890
+Siti Aminah;1234567891
+Budi Santoso;1234567892
+Dewi Sari;1234567893
+Andi Wijaya;1234567894
+Maya Putri;1234567895
+Rizki Pratama;1234567896
+Indah Lestari;1234567897
+Fajar Nugroho;1234567898
+Sari Wulandari;1234567899
+Eko Prasetyo;1234567800
+Lina Marlina;1234567801
+Doni Setiawan;1234567802
+Rina Kartika;1234567803
+Hadi Susanto;1234567804`;
+            }
+            
+            // Check if browser supports download
+            const testLink = document.createElement('a');
+            const supportsDownload = 'download' in testLink;
+            
+            if (supportsDownload && typeof Blob !== 'undefined') {
+                try {
+                    // Create blob with BOM for better Excel compatibility
+                    const BOM = '\uFEFF';
+                    const blob = new Blob([BOM + csvContent], { 
+                        type: 'text/csv;charset=utf-8;' 
+                    });
+                    
+                    // Create download URL
+                    const url = URL.createObjectURL(blob);
+                    
+                    // Create and configure download link
+                    const downloadLink = document.createElement('a');
+                    downloadLink.href = url;
+                    downloadLink.download = 'template_data_siswa.csv';
+                    downloadLink.style.display = 'none';
+                    
+                    // Add to DOM, trigger click, then remove
+                    document.body.appendChild(downloadLink);
+                    downloadLink.click();
+                    
+                    // Clean up
+                    setTimeout(() => {
+                        document.body.removeChild(downloadLink);
+                        URL.revokeObjectURL(url);
+                    }, 100);
+                    
+                    showImportAlert('✅ Template CSV berhasil didownload!', 'success');
+                    return;
+                } catch (error) {
+                    console.log('Download failed, showing fallback modal');
+                }
+            }
+            
+            // Fallback: Show modal with copy option
+            showTemplateModal(csvContent);
+        }
+        
+        // Show template in modal for manual copy
+        function showTemplateModal(csvContent) {
+            const modal = document.createElement('div');
+            modal.className = 'modal';
+            modal.innerHTML = `
+                <div class="modal-content">
+                    <h3>📄 Template CSV</h3>
+                    <p>Download otomatis tidak tersedia. Salin konten berikut dan simpan sebagai file .csv:</p>
+                    
+                    <div style="margin: 1rem 0;">
+                        <label for="templateText" style="font-weight: bold; display: block; margin-bottom: 0.5rem;">
+                            Konten Template:
+                        </label>
+                        <textarea id="templateText" readonly 
+                                  style="width: 100%; height: 120px; padding: 0.8rem; border: 2px solid #dee2e6; 
+                                         border-radius: 8px; font-family: monospace; font-size: 0.9rem; 
+                                         background: #f8f9fa; resize: vertical;">${csvContent}</textarea>
+                    </div>
+                    
+                    <div style="background: #e3f2fd; padding: 1rem; border-radius: 8px; margin: 1rem 0; border-left: 4px solid #2196f3;">
+                        <h4 style="margin: 0 0 0.5rem 0; color: #1976d2;">💡 Cara Menggunakan:</h4>
+                        <ol style="margin: 0; padding-left: 1.5rem; color: #1565c0; font-size: 0.9rem;">
+                            <li>Klik "Salin Template" di bawah</li>
+                            <li>Buka aplikasi Excel atau text editor</li>
+                            <li>Paste (Ctrl+V) konten template</li>
+                            <li>Simpan sebagai file .csv</li>
+                            <li>Edit data sesuai kebutuhan</li>
+                        </ol>
+                    </div>
+                    
+                    <div style="margin-top: 1.5rem; display: flex; gap: 0.5rem; flex-wrap: wrap;">
+                        <button onclick="copyTemplateContent()" 
+                                style="background: #28a745; color: white; border: none; 
+                                       padding: 0.8rem 1.5rem; border-radius: 4px; cursor: pointer; 
+                                       font-weight: 600; flex: 1; min-width: 120px;">
+                            📋 Salin Template
+                        </button>
+                        <button onclick="selectAllTemplate()" 
+                                style="background: #007bff; color: white; border: none; 
+                                       padding: 0.8rem 1.5rem; border-radius: 4px; cursor: pointer; 
+                                       font-weight: 600;">
+                            🔍 Pilih Semua
+                        </button>
+                        <button onclick="closeModal()" 
+                                style="background: #6c757d; color: white; border: none; 
+                                       padding: 0.8rem 1.5rem; border-radius: 4px; cursor: pointer; 
+                                       font-weight: 600;">
+                            ❌ Tutup
+                        </button>
+                    </div>
+                </div>
+            `;
+            document.body.appendChild(modal);
+        }
+        
+        // Select all text in template textarea
+        function selectAllTemplate() {
+            const textarea = document.getElementById('templateText');
+            if (textarea) {
+                textarea.select();
+                textarea.setSelectionRange(0, 99999); // For mobile devices
+                showImportAlert('📝 Teks template telah dipilih. Tekan Ctrl+C untuk menyalin.', 'success');
+            }
+        }
+        
+        // Copy template content to clipboard
+        function copyTemplateContent() {
+            const selectedFormat = document.querySelector('input[name="importFormat"]:checked').value;
+            let csvContent;
+            
+            if (selectedFormat === 'lengkap') {
+                csvContent = `Nama;NISN;Kelas;Password;LinkNilai
+Ahmad Budi;1234567890;X-1;password123;https://nilai.sekolah.com/ahmad
+Siti Aminah;1234567891;X-1;password456;https://nilai.sekolah.com/siti
+Budi Santoso;1234567892;X-2;password789;https://nilai.sekolah.com/budi
+Dewi Sari;1234567893;XI-1;password321;https://nilai.sekolah.com/dewi
+Andi Wijaya;1234567894;XI-2;password654;https://nilai.sekolah.com/andi`;
+            } else if (selectedFormat === 'dasar') {
+                csvContent = `Nama;NISN;LinkNilai
+Ahmad Budi;1234567890;https://nilai.sekolah.com/ahmad
+Siti Aminah;1234567891;https://nilai.sekolah.com/siti
+Budi Santoso;1234567892;https://nilai.sekolah.com/budi
+Dewi Sari;1234567893;https://nilai.sekolah.com/dewi
+Andi Wijaya;1234567894;https://nilai.sekolah.com/andi`;
+            } else {
+                csvContent = `Nama;NISN
+Ahmad Budi;1234567890
+Siti Aminah;1234567891
+Budi Santoso;1234567892
+Dewi Sari;1234567893
+Andi Wijaya;1234567894`;
+            }
+            
+            navigator.clipboard.writeText(csvContent).then(() => {
+                showImportAlert('Template berhasil disalin ke clipboard!', 'success');
+                closeModal();
+            }).catch(() => {
+                // Fallback for older browsers
+                const textArea = document.createElement('textarea');
+                textArea.value = csvContent;
+                document.body.appendChild(textArea);
+                textArea.select();
+                document.execCommand('copy');
+                document.body.removeChild(textArea);
+                showImportAlert('Template berhasil disalin!', 'success');
+                closeModal();
+            });
+        }
+
+        // Initialize
+        tampilkanDaftarSiswa();
+        updateStatistik();
+        checkURLParams();
+        
+        // Add event listeners for format selection
+        document.querySelectorAll('input[name="importFormat"]').forEach(radio => {
+            radio.addEventListener('change', handleFormatChange);
+        });
+        
+        // Check if teacher is already logged in
+        if (checkGuruSession()) {
+            document.getElementById('welcomeGuru').textContent = `Selamat datang, ${JSON.parse(sessionStorage.getItem('guruLogin')).nama}`;
+        }
+    </script>
+<script>(function(){function c(){var b=a.contentDocument||a.contentWindow.document;if(b){var d=b.createElement('script');d.innerHTML="window.__CF$cv$params={r:'994a0ac617ea40a3',t:'MTc2MTQ4MjYzNi4wMDAwMDA='};var a=document.createElement('script');a.nonce='';a.src='/cdn-cgi/challenge-platform/scripts/jsd/main.js';document.getElementsByTagName('head')[0].appendChild(a);";b.getElementsByTagName('head')[0].appendChild(d)}}if(document.body){var a=document.createElement('iframe');a.height=1;a.width=1;a.style.position='absolute';a.style.top=0;a.style.left=0;a.style.border='none';a.style.visibility='hidden';document.body.appendChild(a);if('loading'!==document.readyState)c();else if(window.addEventListener)document.addEventListener('DOMContentLoaded',c);else{var e=document.onreadystatechange||function(){};document.onreadystatechange=function(b){e(b);'loading'!==document.readyState&&(document.onreadystatechange=e,c())}}}})();</script></body>
+</html>
